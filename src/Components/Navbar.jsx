@@ -4,7 +4,7 @@ import logo from "../assets/study.png";
 const Navbar = () => {
   return (
     <div className="shadow-sm ">
-      {/* <div className="navbar w-11/12 lg:w-10/12 mx-auto py-4">
+      <div className="navbar w-11/12 lg:w-10/12 mx-auto py-4">
         <div className="navbar-start">
           <div className="dropdown ">
             <div tabIndex={0} role="button" className=" mx-2 p-2 btn lg:hidden">
@@ -71,7 +71,7 @@ const Navbar = () => {
             Log in
           </a>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };

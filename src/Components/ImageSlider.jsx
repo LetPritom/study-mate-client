@@ -66,21 +66,22 @@ const ImageSlider = () => {
           >
             {images.map((slide, i) => (
               <div key={i} className="w-full shrink-0 relative">
-                {/* এখানে <img> দিতে হবে, video না! */}
+                
                 <img
                   src={slide.img}
                   alt={slide.title}
                   className="w-full h-[530px] object-cover opacity-[0.3]"
                 />
 
-                {/* Dark overlay + Text */}
+                
                 {/* Dark overlay + Animated Text */}
+
                 <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent flex items-end">
                   <div className="pb-16 pl-12 text-white">
-                    {/* Ei div ta key hisebe slide change detect korbe */}
+                    
                     <div
-                      key={current} // Magic line — ei jonno animation restart hobe
-                      className="animate-fadeSlideUp" // Custom animation name
+                      key={current} 
+                      className="animate-fadeSlideUp" 
                     >
                       <h1 className="text-4xl md:text-7xl font-extrabold mb-2 bg-clip-text text-transparent bg-linear-to-r from-white to-purple-400">
                         {images[current].title}

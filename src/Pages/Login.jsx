@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router';  
+import { AuthContext } from '../AuthContex/AuthContext';
 
 const Login = () => {
+
+     const {user , signInWithEmailAndPassFunc, signInWithGoogleFunc } = useContext(AuthContext);
+
+     const handleSignUpWithEmailAndPass = (e) => {
+         e.preventDefault() 
+         const email = e.target.email?.value ;
+         const password = e.target.password?.value ;
+         console.log (email , password);
+         
+     }
+
     return (
         <div className="hero bg-linear-to-br from-slate-900 to-blue-950 min-h-screen flex items-center justify-center">
             <div className="hero-content flex-col">
@@ -11,7 +23,7 @@ const Login = () => {
 
                 <div className="card border-2 border-white w-full max-w-sm shadow-2xl">
                     <div className="card-body p-8">
-                        <form className="space-y-6">
+                        <form onSubmit={handleSignUpWithEmailAndPass} className="space-y-6">
                             {/* Email */}
                             <div>
                                 <label className="label text-[#f55a00] font-medium">Email</label>

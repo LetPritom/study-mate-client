@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AuthContext } from './AuthContext';
 import { LiaChildSolid } from 'react-icons/lia';
-import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import { auth } from '../Firebase/firebase.config';
 
 const googleProvider = new GoogleAuthProvider ;
@@ -39,11 +39,18 @@ const AuthProvider = ({children}) => {
         return signInWithPopup(auth , googleProvider) ;
     }
 
+    // logout function
+
+    const logoutFunction = () => {
+           return signOut(auth);
+    };
+
     const authInfo ={
         registerEmailAndPassFunc,
         signInWithEmailAndPassFunc,
         updateProfileFunction,
         signInWithGoogleFunc,
+        logoutFunction,
         loading,
         setLoading,
         setUser,

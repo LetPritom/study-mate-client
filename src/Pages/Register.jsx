@@ -1,7 +1,61 @@
-import React from "react";
-import { Link } from "react-router";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router";
+import { AuthContext } from "../AuthContex/AuthContext";
+import { toast } from "react-toastify";
+
 
 const Register = () => {
+
+const {logoutFunction, updateProfileFunction, registerEmailAndPassFunc, signInWithGoogleFunc} = useContext(AuthContext);
+const navigate = useNavigate()
+
+
+const handleRegister = (e) => {
+    e.preventDefault()
+    const displayName = e.target.name?.value;
+    const photoURL = e.target.photo?.value;
+    const email = e.target.email?.value;
+    const password = e.target.password?.value;
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z]).+$/ ;
+    console.log(displayName,photoURL,email,password);
+
+    if(password.length < 6) {
+        return toast.info('Your Password Must Be 6 digit')
+    } else if (!passwordRegex.test(password)) {
+        return toast.info("Password must contain at least one uppercase and one lowercase letter!");
+    };
+
+    registerEmailAndPassFunc(email,password)
+    .then(() => {
+        updateProfileFunction (displayName,photoURL) 
+        .then(()=> {
+
+            logoutFunction()
+            .then(() => {
+             toast.success('Registration successful! Please login.');
+             navigate('/login');
+
+
+            })
+        })
+
+    })
+    .catch((err) => {
+        return toast.error('Registration Failed!' ,err)
+    })
+
+
+}
+
+const handleGoogleSignin = () => {
+    signInWithGoogleFunc()
+    .then(() => {
+        toast.success('Login successful');
+        navigate('/')
+    })
+}
+
+
   return (
     <div className="hero bg-linear-to-br from-slate-900 to-blue-950 min-h-screen flex items-center justify-center">
       <div className="hero-content flex-col">
@@ -10,7 +64,7 @@ const Register = () => {
         </div>
         <div className="card border-2 my-3 border-white w-full max-w-sm shrink-0">
           <div className="card-body">
-            <form onSubmit="{handleRegister}" className="">
+            <form onSubmit={handleRegister} className="">
               <fieldset className="fieldset">
                 {/* name */}
 
@@ -62,7 +116,7 @@ const Register = () => {
 
                 <button
                   type="button"
-                  onClick="{handleGoogleSignin}"
+                  onClick={handleGoogleSignin}
                   className="flex items-center justify-center gap-3 w-full border border-white cursor-pointer text-white py-3 rounded-lg font-medium hover:bg-white/10 transition"
                 >
                   <img

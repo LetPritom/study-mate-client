@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';  // EI TA MUST
+import { Link } from 'react-router';  
 
 const Login = () => {
     return (
@@ -47,7 +47,7 @@ const Login = () => {
 
                             {/* Login Button */}
 
-                            <button type="submit" className="btn w-full pro-gradient-btn  ">
+                            <button type="submit" className="btn w-full pro-gradient-btn ">
                                 Login
                             </button>
 

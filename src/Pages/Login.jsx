@@ -18,7 +18,7 @@ const Login = () => {
                                 <input
                                     type="email"
                                     name="email"
-                                    className="input input-bordered border-[#2563EB] text-white placeholder-gray-400 w-full"
+                                    className="input border border-[#2563EB] text-[#f55a00] placeholder-gray-400 w-full"
                                     placeholder="Enter your email"
                                     required
                                 />
@@ -31,7 +31,7 @@ const Login = () => {
                                 <input
                                     type="password"
                                     name="password"
-                                    className="input input-bordered border-[#2563EB] text-white placeholder-gray-400 w-full"
+                                    className="input  border-[#2563EB] text-[#f55a00] placeholder-gray-400 w-full"
                                     placeholder="Enter password"
                                     required
                                 />
@@ -47,7 +47,7 @@ const Login = () => {
 
                             {/* Login Button */}
 
-                            <button type="submit" className="btn w-full pro-gradient-btn bg-[#2563EB] hover:bg-orange-600 text-white border-none text-lg font-bold">
+                            <button type="submit" className="btn w-full pro-gradient-btn  ">
                                 Login
                             </button>
 

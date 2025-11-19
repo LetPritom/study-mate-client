@@ -4,7 +4,7 @@ import { NavLink } from "react-router";
 
 const Navbar = () => {
   return (
-    <div className="shadow-sm ">
+    <div className="shadow-md ">
       <div className="navbar w-11/12 lg:w-10/12 mx-auto py-4">
         <div className="navbar-start">
           <div className="dropdown ">
@@ -29,16 +29,24 @@ const Navbar = () => {
               tabIndex="-1"
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
-              <li className="hover:text-[#2563EB] cursor-pointer">Home</li>
-              <li className="hover:text-[#2563EB] cursor-pointer">
+               <NavLink to="/">
+              <li className="hover:text-[#f55a00] cursor-pointer">Home</li>
+            </NavLink>
+            <NavLink to='/find-partner'>
+              <li className="hover:text-[#f55a00] cursor-pointer">
                 Find Partner
               </li>
-              <li className="hover:text-[#2563EB] cursor-pointer">
+            </NavLink>
+            <NavLink to='/create-partner'>
+              <li className="hover:text-[#f55a00] cursor-pointer">
                 Create Partner Profile
               </li>
-              <li className="hover:text-[#2563EB] cursor-pointer">
+            </NavLink>
+            <NavLink to='my-connection'>
+              <li className="hover:text-[#f55a00] cursor-pointer">
                 My Connections
               </li>
+            </NavLink>
             </ul>
           </div>
           <div className="logo flex gap-2 items-center ">
@@ -71,14 +79,24 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <a
+          {/* <a
             className="border border-[#f55a00] bg-transparent text-[#2563EB]  
                          px-3 py-1.5 rounded-lg cursor-pointer font-semibold
                        hover:bg-white hover:text-[#f55a00] hover:border-[#2563EB]
                         transition-all duration-200 ease-in-out shadow-sm hover:shadow-md"
           >
             Log in
-          </a>
+          </a> */}
+          <NavLink to='/login'>
+            <button className="border border-[#f55a00] bg-transparent text-[#2563EB]  
+                         px-3 py-1.5 rounded-lg cursor-pointer font-semibold
+                        hover:text-[#f55a00] hover:border-[#2563EB]
+                        transition-all duration-200 ease-in-out shadow-sm hover:shadow-md">
+                          Login
+
+          </button>
+          </NavLink>
+          
         </div>
       </div>
     </div>

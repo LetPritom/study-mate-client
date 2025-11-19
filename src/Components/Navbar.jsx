@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../assets/study.png";
+import { NavLink } from "react-router";
 
 const Navbar = () => {
   return (
@@ -49,16 +50,24 @@ const Navbar = () => {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 flex gap-5 font-semibold text-[#2563EB] ">
-            <li className="hover:text-[#f55a00] cursor-pointer">Home</li>
-            <li className="hover:text-[#f55a00] cursor-pointer">
-              Find Partner
-            </li>
-            <li className="hover:text-[#f55a00] cursor-pointer">
-              Create Partner Profile
-            </li>
-            <li className="hover:text-[#f55a00] cursor-pointer">
-              My Connections
-            </li>
+            <NavLink to="/">
+              <li className="hover:text-[#f55a00] cursor-pointer">Home</li>
+            </NavLink>
+            <NavLink to='/find-partner'>
+              <li className="hover:text-[#f55a00] cursor-pointer">
+                Find Partner
+              </li>
+            </NavLink>
+            <NavLink to='/create-partner'>
+              <li className="hover:text-[#f55a00] cursor-pointer">
+                Create Partner Profile
+              </li>
+            </NavLink>
+            <NavLink to='my-connection'>
+              <li className="hover:text-[#f55a00] cursor-pointer">
+                My Connections
+              </li>
+            </NavLink>
           </ul>
         </div>
         <div className="navbar-end">

@@ -5,6 +5,9 @@ import Error from '../Pages/Error';
 import Home from '../Pages/Home';
 import Login from '../Pages/Login';
 import Register from '../Pages/Register';
+import CreatePartner from '../Pages/CreatePartner';
+import Myconnection from '../Pages/Myconnection';
+import FindPartner from '../Pages/FindPartner';
 
 
 export const router = createBrowserRouter([
@@ -22,6 +25,21 @@ export const router = createBrowserRouter([
             {
                 path:'/login',
                 element:<Login></Login>
+
+            },
+            {
+                path:'/create-partner',
+                element:<CreatePartner></CreatePartner>
+
+            },
+            {
+                path:'/my-connection',
+                element:<Myconnection></Myconnection>
+
+            },
+            {
+                path:'/find-partner',
+                element:<FindPartner></FindPartner>
 
             },
 

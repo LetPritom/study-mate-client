@@ -1,22 +1,16 @@
-import React from 'react';
-import { Link } from 'react-router';
-
-
-
+import React from "react";
+import { Link } from "react-router";
 
 const Register = () => {
-    return (
-        <div className="hero bg-linear-to-br from-slate-900 to-blue-950 min-h-screen flex items-center justify-center">
+  return (
+    <div className="hero bg-linear-to-br from-slate-900 to-blue-950 min-h-screen flex items-center justify-center">
       <div className="hero-content flex-col">
         <div className="text-center lg:text-left">
           <h1 className="text-5xl text-white font-bold">Register Now</h1>
         </div>
-        <div className="card border-2 border-white w-full max-w-sm shrink-0 shadow-2xl">
+        <div className="card border-2 my-3 border-white w-full max-w-sm shrink-0">
           <div className="card-body">
-            <form
-               onSubmit='{handleRegister}'
-              className=""
-            >
+            <form onSubmit="{handleRegister}" className="">
               <fieldset className="fieldset">
                 {/* name */}
 
@@ -68,7 +62,7 @@ const Register = () => {
 
                 <button
                   type="button"
-                  onClick='{handleGoogleSignin}'
+                  onClick="{handleGoogleSignin}"
                   className="flex items-center justify-center gap-3 w-full border border-white cursor-pointer text-white py-3 rounded-lg font-medium hover:bg-white/10 transition"
                 >
                   <img
@@ -93,7 +87,7 @@ const Register = () => {
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default Register;

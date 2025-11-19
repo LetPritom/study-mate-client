@@ -6,8 +6,9 @@ import { toast } from "react-toastify";
 
 const Register = () => {
 
-const {logoutFunction, updateProfileFunction, registerEmailAndPassFunc, signInWithGoogleFunc} = useContext(AuthContext);
+const { user, setUser, logoutFunction, updateProfileFunction, registerEmailAndPassFunc, signInWithGoogleFunc} = useContext(AuthContext);
 const navigate = useNavigate()
+console.log(user)
 
 
 const handleRegister = (e) => {
@@ -49,7 +50,8 @@ const handleRegister = (e) => {
 
 const handleGoogleSignin = () => {
     signInWithGoogleFunc()
-    .then(() => {
+    .then((result) => {
+        setUser(result.user)
         toast.success('Login successful');
         navigate('/')
     })

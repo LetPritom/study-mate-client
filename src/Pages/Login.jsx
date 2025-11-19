@@ -1,17 +1,45 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router';  
+import { Link, useNavigate } from 'react-router';  
 import { AuthContext } from '../AuthContex/AuthContext';
+import { toast } from 'react-toastify';
 
 const Login = () => {
 
-     const {user , signInWithEmailAndPassFunc, signInWithGoogleFunc } = useContext(AuthContext);
+     const {setUser, user , signInWithEmailAndPassFunc, signInWithGoogleFunc } = useContext(AuthContext);
+     console.log(user)
+     const navigate = useNavigate();
 
      const handleSignUpWithEmailAndPass = (e) => {
          e.preventDefault() 
          const email = e.target.email?.value ;
          const password = e.target.password?.value ;
          console.log (email , password);
-         
+
+         signInWithEmailAndPassFunc(email,password)
+         .then((result) => {
+            setUser(result.user);
+            toast.success('Successfully login ! Visit Our All Pages');
+            navigate('/')
+            
+         })
+
+         .catch((err) => {
+            return toast.error(err);
+         })
+
+
+     }
+
+
+     const handleGoogleSignin =() => {
+        signInWithGoogleFunc()
+        .then(() => {
+            toast.success('Successfully Login')
+            navigate('/')
+        })
+        .catch((err) => {
+            return toast.error(err)
+        })
      }
 
     return (
@@ -67,6 +95,7 @@ const Login = () => {
 
                             <button
                                 type="button"
+                                onClick={handleGoogleSignin}
                                 className="flex items-center justify-center gap-3 w-full border border-white cursor-pointer text-white py-3 rounded-lg font-medium hover:bg-white/10 transition"
                             >
                                 <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" className="w-5 h-5" />

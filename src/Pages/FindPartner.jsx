@@ -3,7 +3,7 @@ import React from 'react';
 const FindPartner = () => {
     return (
         <div>
-            <h1>partner</h1>
+            <h1>Find partner</h1>
         </div>
     );
 };

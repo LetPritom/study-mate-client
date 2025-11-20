@@ -1,10 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from "../assets/study.png";
 import { NavLink } from "react-router";
+import { AuthContext } from "../AuthContex/AuthContext";
+import { toast } from "react-toastify";
+import { ClipLoader } from "react-spinners";
 
 const Navbar = () => {
+  const { user, logoutFunction, loading } = useContext(AuthContext);
+  console.log(user);
+
+  const handleLogOut = () => {
+    logoutFunction()
+      .then(() => {
+        return toast.success("Logout");
+      })
+      .catch((err) => {
+        toast.error(err);
+      });
+  };
+
   return (
-    <div className="shadow-md ">
+    <div className=" border-b border-gray-300">
       <div className="navbar w-11/12 lg:w-10/12 mx-auto py-4">
         <div className="navbar-start">
           <div className="dropdown ">
@@ -29,24 +45,30 @@ const Navbar = () => {
               tabIndex="-1"
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
-               <NavLink to="/">
-              <li className="hover:text-[#f55a00] cursor-pointer">Home</li>
-            </NavLink>
-            <NavLink to='/find-partner'>
-              <li className="hover:text-[#f55a00] cursor-pointer">
-                Find Partner
-              </li>
-            </NavLink>
-            <NavLink to='/create-partner'>
-              <li className="hover:text-[#f55a00] cursor-pointer">
-                Create Partner Profile
-              </li>
-            </NavLink>
-            <NavLink to='my-connection'>
-              <li className="hover:text-[#f55a00] cursor-pointer">
-                My Connections
-              </li>
-            </NavLink>
+              <NavLink to="/">
+                <li className="hover:text-[#f55a00] cursor-pointer">Home</li>
+              </NavLink>
+              <NavLink to="/find-partner">
+                <li className="hover:text-[#f55a00] cursor-pointer">
+                  Find Partner
+                </li>
+              </NavLink>
+
+              {user && (
+                <NavLink to="/create-partner">
+                  <li className="hover:text-[#f55a00] cursor-pointer">
+                    Create Partner Profile
+                  </li>
+                </NavLink>
+              )}
+
+              {user && (
+                <NavLink to="my-connection">
+                  <li className="hover:text-[#f55a00] cursor-pointer">
+                    My Connections
+                  </li>
+                </NavLink>
+              )}
             </ul>
           </div>
           <div className="logo flex gap-2 items-center ">
@@ -61,21 +83,27 @@ const Navbar = () => {
             <NavLink to="/">
               <li className="hover:text-[#f55a00] cursor-pointer">Home</li>
             </NavLink>
-            <NavLink to='/find-partner'>
+            <NavLink to="/find-partner">
               <li className="hover:text-[#f55a00] cursor-pointer">
                 Find Partner
               </li>
             </NavLink>
-            <NavLink to='/create-partner'>
-              <li className="hover:text-[#f55a00] cursor-pointer">
-                Create Partner Profile
-              </li>
-            </NavLink>
-            <NavLink to='my-connection'>
-              <li className="hover:text-[#f55a00] cursor-pointer">
-                My Connections
-              </li>
-            </NavLink>
+
+            {user && (
+              <NavLink to="/create-partner">
+                <li className="hover:text-[#f55a00] cursor-pointer">
+                  Create Partner Profile
+                </li>
+              </NavLink>
+            )}
+
+            {user && (
+              <NavLink to="my-connection">
+                <li className="hover:text-[#f55a00] cursor-pointer">
+                  My Connections
+                </li>
+              </NavLink>
+            )}
           </ul>
         </div>
         <div className="navbar-end">
@@ -87,16 +115,65 @@ const Navbar = () => {
           >
             Log in
           </a> */}
-          <NavLink to='/login'>
-            <button className="border border-[#f55a00] bg-transparent text-[#2563EB]  
+
+          {loading ? (
+            <ClipLoader color="#f55a00" />
+          ) : user ? (
+            <div className="img">
+              <button
+                className="cursor-pointer"
+                popoverTarget="popover-1"
+                style={
+                  { anchorName: "--anchor-1" } /* as React.CSSProperties */
+                }
+              >
+                <img
+                  className="h-10 w-10 rounded-full"
+                  src={user.photoURL}
+                  alt="user-image"
+                />
+              </button>
+
+              <ul
+                className="dropdown menu w-32 flex flex-col justify-center rounded-lg bg-white shadow-sm"
+                popover="auto"
+                id="popover-1"
+                style={
+                  { positionAnchor: "--anchor-1" } /* as React.CSSProperties */
+                }
+              >
+                <div className="down flex flex-col justify-center">
+                  <NavLink to= '/profile'><p className="text-sm font-semibold my-2">
+                    Profile
+                  </p></NavLink>
+                  
+                </div>
+
+                <div className="button">
+                  <button
+                    onClick={handleLogOut}
+                    className="border border-[#f55a00] bg-transparent text-[#2563EB]  
                          px-3 py-1.5 rounded-lg cursor-pointer font-semibold
                         hover:text-[#f55a00] hover:border-[#2563EB]
-                        transition-all duration-200 ease-in-out shadow-sm hover:shadow-md">
-                          Login
-
-          </button>
-          </NavLink>
-          
+                        transition-all duration-200 ease-in-out shadow-sm hover:shadow-md"
+                  >
+                    Log Out
+                  </button>
+                </div>
+              </ul>
+            </div>
+          ) : (
+            <NavLink to="/login">
+              <button
+                className="border border-[#f55a00] bg-transparent text-[#2563EB]  
+                         px-3 py-1.5 rounded-lg cursor-pointer font-semibold
+                        hover:text-[#f55a00] hover:border-[#2563EB]
+                        transition-all duration-200 ease-in-out shadow-sm hover:shadow-md"
+              >
+                Login
+              </button>
+            </NavLink>
+          )}
         </div>
       </div>
     </div>

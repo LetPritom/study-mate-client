@@ -1,13 +1,16 @@
 import React, { useContext } from 'react';
-import { Link, useNavigate } from 'react-router';  
+import { Link, useLocation, useNavigate } from 'react-router';  
 import { AuthContext } from '../AuthContex/AuthContext';
 import { toast } from 'react-toastify';
 
 const Login = () => {
 
-     const {setUser, user , signInWithEmailAndPassFunc, signInWithGoogleFunc } = useContext(AuthContext);
+     const {setUser, user ,  setLoading, signInWithEmailAndPassFunc, signInWithGoogleFunc } = useContext(AuthContext);
      console.log(user)
      const navigate = useNavigate();
+
+     const location = useLocation()
+     const from = location.state || '/' ;
 
      const handleSignUpWithEmailAndPass = (e) => {
          e.preventDefault() 
@@ -17,9 +20,10 @@ const Login = () => {
 
          signInWithEmailAndPassFunc(email,password)
          .then((result) => {
+             setLoading(false);
             setUser(result.user);
             toast.success('Successfully login ! Visit Our All Pages');
-            navigate('/')
+            navigate(from);
             
          })
 
@@ -34,8 +38,9 @@ const Login = () => {
      const handleGoogleSignin =() => {
         signInWithGoogleFunc()
         .then(() => {
+             setLoading(false);
             toast.success('Successfully Login')
-            navigate('/')
+            navigate(from)
         })
         .catch((err) => {
             return toast.error(err)

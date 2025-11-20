@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 
 const Register = () => {
 
-const { user, setUser, logoutFunction, updateProfileFunction, registerEmailAndPassFunc, signInWithGoogleFunc} = useContext(AuthContext);
+const { user, setLoading,  logoutFunction, updateProfileFunction, registerEmailAndPassFunc, signInWithGoogleFunc} = useContext(AuthContext);
 const navigate = useNavigate()
 console.log(user)
 
@@ -30,9 +30,9 @@ const handleRegister = (e) => {
     .then(() => {
         updateProfileFunction (displayName,photoURL) 
         .then(()=> {
-
+               setLoading(false);
             logoutFunction()
-            .then(() => {
+            .then(() => { 
              toast.success('Registration successful! Please login.');
              navigate('/login');
 
@@ -50,10 +50,13 @@ const handleRegister = (e) => {
 
 const handleGoogleSignin = () => {
     signInWithGoogleFunc()
-    .then((result) => {
-        setUser(result.user)
+    .then(() => {
+      setLoading(false);
+        // setUser(result.user)
         toast.success('Login successful');
         navigate('/')
+        
+
     })
 }
 

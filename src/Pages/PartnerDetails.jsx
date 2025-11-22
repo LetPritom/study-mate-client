@@ -70,7 +70,7 @@ const PartnerDetails = () => {
               </p>
             </div>
 
-            <p className="font-bold text-red-500 my-2">
+            <p className="font-bold text-[#ff7f35] my-2">
               Study Mood :{" "}
               <span
                 className={`px-3 py-1 rounded-full text-sm font-bold ${

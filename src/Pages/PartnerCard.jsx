@@ -1,10 +1,14 @@
 import React from "react";
 import rating from "../assets/icon-ratings.png";
+import { NavLink } from "react-router";
 
 const PartnerCard = ({ partner }) => {
-  return (
-    <div>
 
+    const {_id} = partner;
+  return (
+
+
+    <div>
       <div className="group relative bg-white/80 backdrop-blur-xl rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-purple-500/20 transition-all hover:-translate-y-2 duration-500 border border-white/50">
         {/* Gradient Border Effect */}
         <div className="absolute inset-0 bg-linear-to-br from-[#2563EB] via-pink-300 to- opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl -z-10 scale-105"></div>
@@ -24,8 +28,12 @@ const PartnerCard = ({ partner }) => {
         <div className="p-6 space-y-4">
           <div className="flex flex-col gap-2">
             <h2 className="text-2xl font-bold text-gray-800">{partner.name}</h2>
-            <h2 className="text-sm font-bold text-gray-800">Exp: {partner.experienceLevel}</h2>
-            <h2 className="text-sm font-bold text-gray-800">{partner.studyMode}</h2>
+            <h2 className="text-sm font-bold text-gray-800">
+              Exp: {partner.experienceLevel}
+            </h2>
+            <h2 className="text-sm font-bold text-gray-800">
+              {partner.studyMode}
+            </h2>
           </div>
 
           {/* Subject and Rating */}
@@ -45,9 +53,11 @@ const PartnerCard = ({ partner }) => {
           </div>
 
           {/* create partner profile button */}
-          <button className="w-full mt-4 py-3 bg-linear-to-r from-[#2563EB] to-pink-600 text-white font-bold rounded-xl hover:from-purple-700 hover:to-pink-700 transform hover:scale-105 transition-all duration-300 shadow-md cursor-pointer">
-            View Profile
-          </button>
+          <NavLink to={`/partnersDetails/${_id}`}>
+            <button className="w-full mt-4 py-3 bg-linear-to-r from-[#2563EB] to-pink-600 text-white font-bold rounded-xl hover:from-purple-700 hover:to-pink-700 transform hover:scale-105 transition-all duration-300 shadow-md cursor-pointer">
+              View Profile
+            </button>
+          </NavLink>
         </div>
       </div>
     </div>

@@ -1,13 +1,63 @@
-import React from "react";
+import React, { use,  } from "react";
+import { AuthContext } from "../AuthContex/AuthContext";
+import axios from "axios";
 
 const CreatePartner = () => {
+
+  const { user } = use(AuthContext);
+
+
+
+const handleCreatePartner = (e) => {
+  e.preventDefault();
+   const name = e.target.name?.value;
+   const profileimage = e.target.profile?.value;
+   const subject= e.target.subject?.value;
+   const studyMode = e.target.studyMode?.value;
+   const availabilityTime = e.target.availabilityTime?.value;
+   const location = e.target.location?.value;
+   const experienceLevel = e.target.experienceLevel?.value;
+   const rating = e.target.rating?.value;
+   const partnerSendRequest = 0 ;
+   const email = user.email;
+   
+  //  console.log({subject, user , profileimage, name,studyMode,availabilityTime,rating });
+
+   const data = {
+    name,
+    profileimage,
+    subject , 
+    studyMode,
+    availabilityTime,
+    location,
+    experienceLevel,
+    rating,
+    partnerSendRequest,
+    email
+
+   }
+
+   axios.post('http://localhost:3000/partners' , data)
+   .then((res) => {
+    console.log(res)
+   })
+   .catch((err) => {
+    console.log(err)
+   })
+
+   console.log(data);
+}
+
+
+
   return (
     <div className="max-w-xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
       <h2 className="text-2xl text-[#f55a00] font-bold mb-5 text-center">
         Create New Partner
       </h2>
 
-      <form className="space-y-4">
+      <form className="space-y-4"
+      onSubmit={handleCreatePartner}>
         <div>
           <label className="block font-semibold mb-1">Name</label>
           <input

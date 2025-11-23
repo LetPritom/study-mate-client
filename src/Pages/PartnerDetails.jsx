@@ -1,14 +1,21 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { FaStar } from "react-icons/fa6";
 import { IoPersonAdd } from "react-icons/io5";
+import { User } from "lucide-react";
+import { AuthContext } from "../AuthContex/AuthContext";
+import { toast } from "react-toastify";
 
 const PartnerDetails = () => {
+  const {user} = use(AuthContext);
   const { id } = useParams();
   // console.log(id)
 
   const [details, setDetails] = useState([]);
+  const [ count , setCount] = useState(false)
+
+  
 
   useEffect(() => {
     axios(`http://localhost:3000/partners/${id}`).then((res) => {
@@ -16,7 +23,34 @@ const PartnerDetails = () => {
       const data = res.data.result;
       setDetails(data);
     });
-  }, []);
+  }, [id , count]);
+
+  const handleRequest = () => {
+
+  const requestDetails = {
+    name:details.name,
+    profileimage:details.profileimage,
+    rating:details.rating,
+    subject: details.subject,
+    studyMode:details.studyMode,
+    availabilityTime: details.availabilityTime,
+    email : details.email,
+    experienceLevel: details.experienceLevel,
+    location: details.location,
+    request_by: user.email,
+
+  }
+
+
+
+    axios.post(`http://localhost:3000/request/${details._id}` , requestDetails).then((res) => {
+      // console.log(res.data)
+      const data = res.data;
+      toast.success('Request Sent! Visit My Connection Page')
+      console.log(data)
+      setCount(!count)
+    });
+  }
 
   console.log(details);
 
@@ -83,7 +117,7 @@ const PartnerDetails = () => {
               </span>
             </p>
 
-            <button className="w-52 mt-4 py-3 px-3 bg-linear-to-r from-[#2563EB] to-pink-600 text-white font-bold rounded-xl hover:from-purple-700 hover:to-pink-700 transform hover:scale-105 transition-all duration-300 shadow-md cursor-pointer">
+            <button onClick={handleRequest} className="w-52 mt-4 py-3 px-3 bg-linear-to-r from-[#2563EB] to-pink-600 text-white font-bold rounded-xl hover:from-purple-700 hover:to-pink-700 transform hover:scale-105 transition-all duration-300 shadow-md cursor-pointer">
               Sent Partner Request
             </button>
           </div>

@@ -111,7 +111,7 @@ const handleGoogleSignin = () => {
                   placeholder="Password"
                 />
 
-                {/* forgate password */}
+                {/* register button*/}
 
                 <button className="btn my-5 w-full pro-gradient-btn">
                   Register

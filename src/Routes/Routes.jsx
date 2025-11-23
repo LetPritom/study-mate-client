@@ -11,6 +11,7 @@ import FindPartner from "../Pages/FindPartner";
 import Private from "../PrivateRoutes/Private";
 import Profile from "../Pages/Profile";
 import PartnerDetails from "../Pages/PartnerDetails";
+import UpdateForm from "../Pages/UpdateForm";
 
 export const router = createBrowserRouter([
   {
@@ -44,6 +45,14 @@ export const router = createBrowserRouter([
         element: (
           <Private>
             <PartnerDetails></PartnerDetails>
+          </Private>
+        ),
+      },
+      {
+        path: "/update/:upId",
+        element: (
+          <Private>
+            <UpdateForm></UpdateForm>
           </Private>
         ),
       },

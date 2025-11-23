@@ -1,10 +1,13 @@
 import React, { use,  } from "react";
 import { AuthContext } from "../AuthContex/AuthContext";
 import axios from "axios";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 const CreatePartner = () => {
 
   const { user } = use(AuthContext);
+  const navigate = useNavigate();
 
 
 
@@ -40,6 +43,8 @@ const handleCreatePartner = (e) => {
    axios.post('http://localhost:3000/partners' , data)
    .then((res) => {
     console.log(res)
+    toast.success('Create Successfully')
+    navigate('/');
    })
    .catch((err) => {
     console.log(err)

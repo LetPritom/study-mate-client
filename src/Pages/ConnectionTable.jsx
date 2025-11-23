@@ -1,46 +1,41 @@
 import axios from "axios";
 import React from "react";
-import { NavLink, } from "react-router";
+import { NavLink } from "react-router";
 import Swal from "sweetalert2";
 
-const ConnectionTable = ({ res ,onDelete}) => {
+const ConnectionTable = ({ res, onDelete }) => {
+  const handleDelete = (id) => {
+    console.log("hello");
 
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(`http://localhost:3000/delete-partners?id=${id}`)
+          .then((res) => {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+            onDelete(id);
 
-
-    const handleDelete = (id) => {
-      console.log('hello')
-
-      
-      Swal.fire({
-  title: "Are you sure?",
-  text: "You won't be able to revert this!",
-  icon: "warning",
-  showCancelButton: true,
-  confirmButtonColor: "#3085d6",
-  cancelButtonColor: "#d33",
-  confirmButtonText: "Yes, delete it!"
-}).then((result) => {
-  if (result.isConfirmed) {
-
-    axios.delete(`http://localhost:3000/delete-partners?id=${id}`)
-      .then((res) => {
-        Swal.fire({
-      title: "Deleted!",
-      text: "Your file has been deleted.",
-      icon: "success"
+            console.log(res);
+          });
+      }
     });
-    onDelete(id);
-        
-        console.log(res)})
-
-    
-  }
-});
-    }
+  };
 
   return (
     <div>
-      <div className="w-11/12 max-w-7xl mx-auto my-10">
+      <div className="w-10/12 max-w-7xl mx-auto my-10">
         {/* Mobile e Card View, Desktop e Table View */}
         <div className="block lg:hidden">
           {/* Mobile Card View */}
@@ -61,14 +56,14 @@ const ConnectionTable = ({ res ,onDelete}) => {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 text-sm">
-              <div>
+            <div className="flex flex-col gap-4 text-sm">
+              <div className="flex items-center">
                 <span className="font-semibold text-gray-700">Subject:</span>
-                <span className="ml-2 px-4 py-2 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-800 font-bold rounded-full">
+                <span className="ml-2 px-4 py-2 bg-linear-to-r from-purple-100 to-pink-100 text-purple-800 font-bold rounded-full">
                   {res.subject}
                 </span>
               </div>
-              <div>
+              <div className="flex items-center">
                 <span className="font-semibold text-gray-700">Status:</span>
                 <span
                   className={`ml-2 px-4 py-2 rounded-full font-bold flex items-center gap-2 w-fit ${
@@ -89,11 +84,16 @@ const ConnectionTable = ({ res ,onDelete}) => {
               </div>
             </div>
 
-            <div className="flex gap-3 pt-4">
-              <button className="flex-1 btn btn-sm bg-[#f55a00] hover:bg-orange-600 text-white border-none shadow-md">
-                Update
-              </button>
-              <button className="flex-1 btn btn-sm bg-red-500 hover:bg-red-600 text-white border-none shadow-md">
+            <div className="flex justify-between p-2 pt-4">
+              <NavLink to={`/update/${res._id}`}>
+                <button className="btn btn-sm bg-[#f55a00] hover:bg-orange-600 text-white border-none shadow-md hover:shadow-xl transform hover:scale-105 transition-all">
+                  Update
+                </button>
+              </NavLink>
+              <button
+                onClick={() => handleDelete(res?._id)}
+                className="btn btn-sm bg-red-500 hover:bg-red-600 text-white border-none shadow-md hover:shadow-xl transform hover:scale-105 transition-all"
+              >
                 Delete
               </button>
             </div>
@@ -141,7 +141,7 @@ const ConnectionTable = ({ res ,onDelete}) => {
                 </td>
                 <td>
                   <span
-                    className={`px-5 py-2 rounded-full font-bold text-sm flex items-center gap-2 shadow-sm ${
+                    className={`px-5 py-2 rounded-full font-bold text-sm flex items-center justify-center gap-2 shadow-sm ${
                       res.studyMode === "Online"
                         ? "bg-green-100 text-green-700"
                         : "bg-red-100 text-red-700"
@@ -165,7 +165,10 @@ const ConnectionTable = ({ res ,onDelete}) => {
                   </NavLink>
 
                   <NavLink to={``}>
-                    <button onClick={() =>handleDelete(res?._id)} className="btn btn-sm bg-red-500 hover:bg-red-600 text-white border-none shadow-md hover:shadow-xl transform hover:scale-105 transition-all">
+                    <button
+                      onClick={() => handleDelete(res?._id)}
+                      className="btn btn-sm bg-red-500 hover:bg-red-600 text-white border-none shadow-md hover:shadow-xl transform hover:scale-105 transition-all"
+                    >
                       Delete
                     </button>
                   </NavLink>

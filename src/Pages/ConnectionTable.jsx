@@ -1,7 +1,43 @@
+import axios from "axios";
 import React from "react";
-import { NavLink } from "react-router";
+import { NavLink, } from "react-router";
+import Swal from "sweetalert2";
 
-const ConnectionTable = ({ res }) => {
+const ConnectionTable = ({ res ,onDelete}) => {
+
+
+
+    const handleDelete = (id) => {
+      console.log('hello')
+
+      
+      Swal.fire({
+  title: "Are you sure?",
+  text: "You won't be able to revert this!",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#3085d6",
+  cancelButtonColor: "#d33",
+  confirmButtonText: "Yes, delete it!"
+}).then((result) => {
+  if (result.isConfirmed) {
+
+    axios.delete(`http://localhost:3000/delete-partners?id=${id}`)
+      .then((res) => {
+        Swal.fire({
+      title: "Deleted!",
+      text: "Your file has been deleted.",
+      icon: "success"
+    });
+    onDelete(id);
+        
+        console.log(res)})
+
+    
+  }
+});
+    }
+
   return (
     <div>
       <div className="w-11/12 max-w-7xl mx-auto my-10">
@@ -129,7 +165,7 @@ const ConnectionTable = ({ res }) => {
                   </NavLink>
 
                   <NavLink to={``}>
-                    <button className="btn btn-sm bg-red-500 hover:bg-red-600 text-white border-none shadow-md hover:shadow-xl transform hover:scale-105 transition-all">
+                    <button onClick={() =>handleDelete(res?._id)} className="btn btn-sm bg-red-500 hover:bg-red-600 text-white border-none shadow-md hover:shadow-xl transform hover:scale-105 transition-all">
                       Delete
                     </button>
                   </NavLink>

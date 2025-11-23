@@ -9,7 +9,6 @@ const Private = ({children}) => {
     const {user , loading} = use(AuthContext);
 
     const location = useLocation()
-    console.log(location);
     if(loading) {
         return <div className="div h-[90vh] flex justify-center items-center">
             <RingLoader color='#ff9c07d7'/>

@@ -93,54 +93,7 @@ const UpdateForm = () => {
             />
           </div>
 
-          {/* <div>
-          <label className="block font-semibold mb-1">Study Mode</label>
-          <select
-            name="studyMode"
-            className="w-full p-2 border rounded"
-            required
-          >
-            <option value="">Select Mode</option>
-            <option value="Online">Online</option>
-            <option value="Offline">Offline</option>
-          </select>
-        </div> */}
-
-          {/* <div>
-          <label className="block font-semibold mb-1">Availability Time</label>
-          <input
-            type="text"
-            name="availabilityTime"
-            className="w-full p-2 border rounded"
-            placeholder="Evening"
-            required
-          />
-        </div> */}
-
-          {/* <div>
-          <label className="block font-semibold mb-1">Location</label>
-          <input
-            type="text"
-            name="location"
-            className="w-full p-2 border rounded"
-            placeholder="Dhaka, Bangladesh"
-            required
-          />
-        </div> */}
-
-          {/* <div>
-          <label className="block font-semibold mb-1">Experience Level</label>
-          <select
-            name="experienceLevel"
-            className="w-full p-2 border rounded"
-            required
-          >
-            <option value="">Select Level</option>
-            <option value="Beginner">Beginner</option>
-            <option value="Intermediate">Intermediate</option>
-            <option value="Advanced">Advanced</option>
-          </select>
-        </div> */}
+        
 
           <div>
             <label className="block font-semibold mb-1">Rating</label>

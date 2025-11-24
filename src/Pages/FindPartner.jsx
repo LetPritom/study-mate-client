@@ -7,10 +7,9 @@ const FindPartner = () => {
   const [findPartners, setFindPartners] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  
+  const [filter , setFilter] = useState('none');
 
   useEffect(() => {
-    
     axios.get(`http://localhost:3000/partners`).then((res) => {
       const data = res.data;
       setFindPartners(data);
@@ -33,32 +32,44 @@ const FindPartner = () => {
     });
   };
 
-  console.log(findPartners);
+  const handleFilter = (() => {
+    if(filter === 'Beginner') {
+      return [...findPartners].filter((partner) => partner.experienceLevel === filter)
+    } else if (filter ==='Intermediate') {
+      return[...findPartners].filter((partner) => partner.experienceLevel===filter)
+    } else {
+      return findPartners;
+    }
+  }) ();
+
+  console.log(handleFilter);
 
   return (
     <div>
-      <h1 className="text-4xl text-center my-5 font-semibold text-[#d94f00] opacity-80 ">
+      <h1 className="text-4xl text-center my-5 font-semibold   ">
         Find Now
       </h1>
-      <h1 className="text-2xl text-center my-5 font-semibold text-[#2563EB] opacity-80 ">
+      <h1 className="text-2xl text-center my-5 font-semibold   ">
         Explore StudyMate and Find Yours Partner
       </h1>
 
       <div className="filter py-5 w-10/12 mx-auto flex flex-col items-center gap-4 lg:flex-row lg:justify-between lg:items-center space-y-5 p-3">
-        <div className="sort flex items-center gap-3">
-          <label className="font-semibold text-gray-700 hidden sm:block">
-            Sort by:
-          </label>
-          <select
-            className="px-5 py-3 bg-white border-2 border-gray-300 rounded-xl focus:border-[#f55a00] focus:outline-none cursor-pointer font-medium text-gray-800 shadow-sm hover:shadow-md transition-all"
-            defaultValue=""
-          >
-            <option value="">All Level</option>
-            <option value="Beginner">Beginner</option>
-            <option value="Intermediate">Intermediate</option>
-            <option value="Advanced">Advanced</option>
-          </select>
-        </div>
+          <div className="sort flex items-center gap-3">
+            <label className="font-semibold   hidden sm:block">
+              Filter By:
+            </label>
+            <select
+            onChange={(e) => setFilter(e.target.value)}
+              name="experience"
+              className="px-5 py-3 bg-white border-2 border-gray-300 rounded-xl focus:border-[#f55a00] focus:outline-none cursor-pointer font-medium text-gray-800 shadow-sm hover:shadow-md transition-all"
+              defaultValue=""
+            >
+              <option value="">All Level</option>
+              <option value="Beginner">Beginner</option>
+              <option value="Intermediate">Intermediate</option>
+              <option value="Advanced">Advanced</option>
+            </select>
+          </div>
 
         <form onSubmit={handleSearch}>
           <div className="search flex gap-3 items-center">
@@ -99,10 +110,9 @@ const FindPartner = () => {
         <div className="div h-[80vh] w-10/12 mx-auto flex justify-center items-center">
           <RingLoader color="#ff9c07d7" />
         </div>
-        
       ) : (
         <div className="top-rated px-5 w-10/12 mx-auto grid gird-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 space-y-5 my-10">
-          {findPartners.map((partner, index) => (
+          {handleFilter.map((partner, index) => (
             <PartnerCard key={index} partner={partner}></PartnerCard>
           ))}
         </div>

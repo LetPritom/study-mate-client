@@ -42,9 +42,9 @@ const handleCreatePartner = (e) => {
 
    axios.post('http://localhost:3000/partners' , data)
    .then((res) => {
-    console.log(res)
-    toast.success('Create Successfully')
-    navigate('/');
+     toast.success('Create Successfully')
+     navigate('/find-partner');
+     console.log(res)
    })
    .catch((err) => {
     console.log(err)
@@ -61,7 +61,7 @@ const handleCreatePartner = (e) => {
         Create New Partner
       </h2>
 
-      <form className="space-y-4"
+      <form className="space-y-4 text-black"
       onSubmit={handleCreatePartner}>
         <div>
           <label className="block font-semibold mb-1">Name</label>

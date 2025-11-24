@@ -8,21 +8,21 @@ const Myconnection = () => {
     const {user} = use(AuthContext)
     const [request , setRequest] = useState([]);
   
-    // useEffect(() => {
-    //     axios.get(`http://localhost:3000/request?email=${user.email}`)
-    //     .then((res) => {
-    //         const data = res.data;
-    //         setRequest(data);
-    //     })
-    // } , [user.email])
-
     useEffect(() => {
-        axios.get(`http://localhost:3000/partners`)
+        axios.get(`http://localhost:3000/request?email=${user.email}`)
         .then((res) => {
             const data = res.data;
             setRequest(data);
         })
     } , [user.email])
+
+    // useEffect(() => {
+    //     axios.get(`http://localhost:3000/partners`)
+    //     .then((res) => {
+    //         const data = res.data;
+    //         setRequest(data);
+    //     })
+    // } , [user.email])
 
     const handleDeleteFromUi = (id) => {
   const updatedRequest = request.filter((item) => item._id !== id);

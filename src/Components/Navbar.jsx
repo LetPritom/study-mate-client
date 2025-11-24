@@ -4,6 +4,9 @@ import { NavLink } from "react-router";
 import { AuthContext } from "../AuthContex/AuthContext";
 import { toast } from "react-toastify";
 import { ClipLoader } from "react-spinners";
+import { GoHomeFill } from "react-icons/go";
+import { FaBookOpenReader, FaUsersViewfinder } from "react-icons/fa6";
+import { MdOutlineCreateNewFolder } from "react-icons/md";
 
 const Navbar = () => {
   const { user, logoutFunction, loading } = useContext(AuthContext);
@@ -86,7 +89,7 @@ const Navbar = () => {
           </div>
           <div className="logo flex gap-2 items-center ">
             <img className="h-10 w-10 cursor-pointer" src={logo} alt="" />
-            <a className="text-2xl text-[#f55a00] font-bold">
+            <a className="text-2xl text-[#f55a00] font-bold hidden md:block">
               <span className="text-[#2563EB]">Study</span>Mate
             </a>
           </div>
@@ -98,27 +101,42 @@ const Navbar = () => {
             }`}
           >
             <NavLink to="/">
-              <li className="hover:text-[#f55a00] cursor-pointer">Home</li>
+              <div className="flex items-center gap-1 icon">
+                <GoHomeFill className="text-md" />
+                <li className="hover:text-[#f55a00] cursor-pointer flex gap-1 items-center">
+                  Home
+                </li>
+              </div>
             </NavLink>
             <NavLink to="/find-partner">
-              <li className="hover:text-[#f55a00] cursor-pointer">
-                Find Partner
-              </li>
+              <div className="flex items-center gap-1 icon">
+                <FaUsersViewfinder className="text-md" />
+                <li className="hover:text-[#f55a00] cursor-pointer">
+                  Find Partner
+                </li>
+              </div>
             </NavLink>
 
             {user && (
               <NavLink to="/create-partner">
-                <li className="hover:text-[#f55a00] cursor-pointer">
-                  Create Partner Profile
-                </li>
+                <div className="flex items-center gap-1 icon">
+                  <MdOutlineCreateNewFolder className="text-md" />
+                  <li className="hover:text-[#f55a00] cursor-pointer">
+                    Create Partner Profile
+                  </li>
+                </div>
               </NavLink>
             )}
 
             {user && (
               <NavLink to="my-connection">
-                <li className="hover:text-[#f55a00] cursor-pointer ">
-                  My Connections
-                </li>
+                <div className="flex items-center gap-1 icon">
+                  <FaBookOpenReader className="text-md" />
+
+                  <li className="hover:text-[#f55a00] cursor-pointer ">
+                    My Connections
+                  </li>
+                </div>
               </NavLink>
             )}
           </ul>
@@ -133,8 +151,10 @@ const Navbar = () => {
             Log in
           </a> */}
 
-          <div className="theme flex gap-2 items-center mx-5  px-5 py-2 bg-linear-to-r from-blue-500 to-pink-500 text-white  rounded-full">
-            <p className="text-sm font-semibold">{dark ? "Dark" : "Light"}</p>
+          {/* theme toggle button */}
+
+          <div className="theme flex gap-2 items-center mx-5  px-3 py-2 border border-[#f55a00] text-[#f55a00]  rounded-full">
+            <p className="text-sm font-semibold sm:text-es">{dark ? "Dark" : "Light"}</p>
             <input
               onChange={(e) => handleTheme(e.target.checked)}
               type="checkbox"

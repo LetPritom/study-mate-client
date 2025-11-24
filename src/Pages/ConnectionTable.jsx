@@ -35,7 +35,7 @@ const ConnectionTable = ({ res, onDelete }) => {
 
   return (
     <div>
-      <div className="w-10/12 max-w-7xl mx-auto my-10">
+      <div className="w-11/12 max-w-7xl mx-auto my-10">
         {/* Mobile e Card View  Desktop e Table View */}
 
 
@@ -133,6 +133,7 @@ const ConnectionTable = ({ res, onDelete }) => {
                         {res.name}
                       </div>
                       <div className="text-sm opacity-70 text-gray-600">
+                        <p>Request By:{res.request_by}</p>
                         {res.location}
                       </div>
                     </div>

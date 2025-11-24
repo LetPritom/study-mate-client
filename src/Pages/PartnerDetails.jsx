@@ -49,6 +49,7 @@ const PartnerDetails = () => {
       toast.success('Request Sent! Visit My Connection Page')
       console.log(data)
       setCount(!count)
+      toast.success('Data Will Be Saved on Database')
     });
   }
 
@@ -58,13 +59,12 @@ const PartnerDetails = () => {
     <div>
       <div className="w-10/12 mx-auto my-5 py-5 px-2 h-auto">
         <div
-          className="card card-side  
-                 hover:bg-linear-to-br via-pink-200 to-[#4a7ff1e0]  hover:scale-105 transition-all duration-300 
+          className="card card-side hover:shadow-2xl hover:shadow-purple-500/20 hover:scale-105 transition-all duration-300 
                    active:scale-95 cursor-pointer flex flex-col md:flex-row lg:flex-row border border-[#f55a00]"
         >
-          <figure className="h-auto">
+          <figure className="h-[330px] w-[330px]">
             <img
-              className="p-3 object-cover  "
+              className="object-cover  "
               src={details.profileimage}
               alt="Movie"
             />
@@ -98,7 +98,7 @@ const PartnerDetails = () => {
               <p className="px-3 py-2 border text-sm font-bold  border-[#ff7f35] hover:border-white transition">
                 {details.availabilityTime}
               </p>
-              <p className="flex items-center justify-center gap-1 px-3 py-2 border text-sm font-bold  border-[#ff7f35] hover:border-white transition">
+              <p className="flex items-center justify-center gap-1 px-3 py-2 border text-sm font-bold  border-[#ff7f35] hover:border-white transition">Partner Count
                 <IoPersonAdd color="#2563EB" />
                 {details.partnerCount}
               </p>

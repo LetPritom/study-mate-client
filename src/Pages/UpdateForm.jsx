@@ -12,7 +12,7 @@ const UpdateForm = () => {
   // default value er jonne
 
   useEffect(() => {
-    axios(`http://localhost:3000/partners/${upId}`).then((res) => {
+    axios(`http://localhost:3000/request/${upId}`).then((res) => {
       // console.log(res.data)
       const data = res.data.result;
       setUpdate(data);
@@ -36,7 +36,7 @@ const UpdateForm = () => {
     };
 
     axios
-      .put(`http://localhost:3000/partners/${update._id} `, updateData) // ekhne ami (upId) use korlew  kaj korbe .
+      .put(`http://localhost:3000/request/${update._id} `, updateData) // ekhne ami (upId) use korlew  kaj korbe .
       .then((res) => {
         console.log(res);
         toast.success("Successfully Updated");
@@ -54,7 +54,7 @@ const UpdateForm = () => {
           Update Partner Info !
         </h2>
 
-        <form className="space-y-4 p-10 border-2 border-[#f55a00]" onSubmit={handleUpdatePartner}>
+        <form className="space-y-4 p-10 text-black border-2 border-[#f55a00]" onSubmit={handleUpdatePartner}>
           <div>
             <label className="block font-semibold mb-1">Name</label>
             <input

@@ -20,10 +20,10 @@ const Home = () => {
   const [partners, setPartners] = useState([]);
 
   useEffect(() => {
-    axios(`http://localhost:3000/partners`).then((res) => {
+    axios(`https://study-mate-server-fawn.vercel.app/partners`).then((res) => {
       const ratingSort = res.data;
       const rated = ratingSort.sort((a, b) => b.rating - a.rating);
-      const slice = rated.slice(0, 6);
+      const slice = rated.slice(0, 6); 
       setPartners(slice);
       console.log(res.data);
     });
@@ -56,7 +56,7 @@ const Home = () => {
         ))}
       </div>
 
-      <div data-aos="fade-down" data-aos-delay="500">
+      <div data-aos="fade-down" data-aos-delay="800">
         <Works />
       </div>
 

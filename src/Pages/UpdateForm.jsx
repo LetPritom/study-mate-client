@@ -12,7 +12,7 @@ const UpdateForm = () => {
   // default value er jonne
 
   useEffect(() => {
-    axios(`http://localhost:3000/request/${upId}`).then((res) => {
+    axios(`https://study-mate-server-fawn.vercel.app/request/${upId}`).then((res) => {
       // console.log(res.data)
       const data = res.data.result;
       setUpdate(data);
@@ -36,7 +36,7 @@ const UpdateForm = () => {
     };
 
     axios
-      .put(`http://localhost:3000/request/${update._id} `, updateData) // ekhne ami (upId) use korlew  kaj korbe .
+      .put(`https://study-mate-server-fawn.vercel.app/request/${update._id} `, updateData) // ekhne ami (upId) use korlew  kaj korbe .
       .then((res) => {
         console.log(res);
         toast.success("Successfully Updated");

@@ -37,7 +37,7 @@ const Navbar = () => {
 
   return (
     <div className=" border-b border-gray-300">
-      <div className="navbar w-11/12 lg:w-10/12 mx-auto py-4">
+      <div className="navbar w-9/12 lg:w-10/12 mx-auto py-4">
         <div className="navbar-start">
           <div className="dropdown ">
             <div tabIndex={0} role="button" className=" mx-2 p-2 btn lg:hidden">
@@ -153,7 +153,7 @@ const Navbar = () => {
 
           {/* theme toggle button */}
 
-          <div className="theme flex gap-2 items-center mx-5  px-3 py-2 border border-[#f55a00] text-[#f55a00]  rounded-full">
+          <div className="theme flex gap-1 items-center mx-2  px-2 py-2 border border-[#f55a00] text-[#f55a00]  rounded-full">
             <p className="text-sm font-semibold sm:text-es">{dark ? "Dark" : "Light"}</p>
             <input
               onChange={(e) => handleTheme(e.target.checked)}
@@ -171,7 +171,7 @@ const Navbar = () => {
                 className="cursor-pointer"
                 popoverTarget="popover-1"
                 style={
-                  { anchorName: "--anchor-1" } /* as React.CSSProperties */
+                  { anchorName: "--anchor-1" } 
                 }
               >
                 <img
@@ -186,7 +186,7 @@ const Navbar = () => {
                 popover="auto"
                 id="popover-1"
                 style={
-                  { positionAnchor: "--anchor-1" } /* as React.CSSProperties */
+                  { positionAnchor: "--anchor-1" } 
                 }
               >
                 <div className="down flex flex-col justify-center">

@@ -18,7 +18,7 @@ const PartnerDetails = () => {
   
 
   useEffect(() => {
-    axios(`http://localhost:3000/partners/${id}`).then((res) => {
+    axios(`https://study-mate-server-fawn.vercel.app/partners/${id}`).then((res) => {
       // console.log(res.data)
       const data = res.data.result;
       setDetails(data);
@@ -43,7 +43,7 @@ const PartnerDetails = () => {
 
 
 
-    axios.post(`http://localhost:3000/request/${details._id}` , requestDetails).then((res) => {
+    axios.post(`https://study-mate-server-fawn.vercel.app/request/${details._id}` , requestDetails).then((res) => {
       // console.log(res.data)
       const data = res.data;
       toast.success('Request Sent! Visit My Connection Page')

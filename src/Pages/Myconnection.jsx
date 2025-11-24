@@ -9,7 +9,7 @@ const Myconnection = () => {
     const [request , setRequest] = useState([]);
   
     useEffect(() => {
-        axios.get(`http://localhost:3000/request?email=${user.email}`)
+        axios.get(`https://study-mate-server-fawn.vercel.app/request?email=${user.email}`)
         .then((res) => {
             const data = res.data;
             setRequest(data);
@@ -17,7 +17,7 @@ const Myconnection = () => {
     } , [user.email])
 
     // useEffect(() => {
-    //     axios.get(`http://localhost:3000/partners`)
+    //     axios.get(`https://study-mate-server-fawn.vercel.app/partners`)
     //     .then((res) => {
     //         const data = res.data;
     //         setRequest(data);

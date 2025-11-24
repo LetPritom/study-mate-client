@@ -40,7 +40,7 @@ const handleCreatePartner = (e) => {
 
    }
 
-   axios.post('http://localhost:3000/partners' , data)
+   axios.post('https://study-mate-server-fawn.vercel.app/partners' , data)
    .then((res) => {
      toast.success('Create Successfully')
      navigate('/find-partner');

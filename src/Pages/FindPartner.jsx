@@ -10,7 +10,7 @@ const FindPartner = () => {
   const [filter , setFilter] = useState('none');
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/partners`).then((res) => {
+    axios.get(`https://study-mate-server-fawn.vercel.app/partners`).then((res) => {
       const data = res.data;
       setFindPartners(data);
       setLoading(false);
@@ -23,7 +23,7 @@ const FindPartner = () => {
     console.log(search);
     setLoading(true);
 
-    axios(`http://localhost:3000/search?search=${search}`).then((res) => {
+    axios(`https://study-mate-server-fawn.vercel.app/search?search=${search}`).then((res) => {
       setFindPartners(res.data);
 
       setLoading(false);
@@ -36,6 +36,8 @@ const FindPartner = () => {
     if(filter === 'Beginner') {
       return [...findPartners].filter((partner) => partner.experienceLevel === filter)
     } else if (filter ==='Intermediate') {
+      return[...findPartners].filter((partner) => partner.experienceLevel===filter)
+    } else if (filter ==='Advanced') {
       return[...findPartners].filter((partner) => partner.experienceLevel===filter)
     } else {
       return findPartners;

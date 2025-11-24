@@ -18,7 +18,9 @@ const ConnectionTable = ({ res, onDelete }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:3000/delete-partners?id=${id}`)
+          .delete(
+            `https://study-mate-server-fawn.vercel.app/delete-partners?id=${id}`
+          )
           .then((res) => {
             Swal.fire({
               title: "Deleted!",
@@ -38,14 +40,12 @@ const ConnectionTable = ({ res, onDelete }) => {
       <div className="w-11/12 max-w-7xl mx-auto my-10">
         {/* Mobile e Card View  Desktop e Table View */}
 
-
         <div className="block lg:hidden">
-
-            
-          {/* Mobile Card er View */}
-          <div className="bg-white rounded-2xl shadow-2xl border-2 border-[#f55a00] p-6 space-y-6">
-            <div className="flex items-center gap-4">
-              <div className="avatar">
+          {/* Mobile Card */}
+          <div className="bg-white rounded-2xl shadow-2xl border-2 border-[#f55a00] p-5 space-y-5 overflow-hidden">
+            {/* Avatar + Name Section */}
+            <div className="flex items-start gap-4">
+              <div className="avatar shrink-0">
                 <div className="mask mask-squircle w-20 h-20 ring-4 ring-[#f55a00] ring-offset-2">
                   <img
                     src={res.profileimage}
@@ -54,23 +54,34 @@ const ConnectionTable = ({ res, onDelete }) => {
                   />
                 </div>
               </div>
-              <div className="flex-1">
-                <h3 className="font-bold text-xl text-gray-800">{res.name}</h3>
-                <p className="text-sm text-gray-600">{res.location}</p>
+
+              <div className="flex-1 min-w-0">
+                {" "}
+                {/* Ei min-w-0 magic kore */}
+                <h3 className="font-bold text-lg text-gray-800 truncate">
+                  {res.name}
+                </h3>
+                <p className="text-sm text-gray-600 truncate">{res.location}</p>
+                <p className="text-xs text-gray-500 truncate mt-1">
+                  Requested by: {res.request_by}
+                </p>
               </div>
             </div>
 
-            <div className="flex flex-col gap-4 text-sm">
-              <div className="flex items-center">
+            {/* Subject & Status */}
+            <div className="git text-sm my-4">
+              <div className="flex items-center gap-4 my-2">
+                
                 <span className="font-semibold text-gray-700">Subject:</span>
-                <span className="ml-2 px-4 py-2 bg-linear-to-r from-purple-100 to-pink-100 text-purple-800 font-bold rounded-full">
+                <span className="px-4 py-2 bg-linear-to-r from-purple-100 to-pink-100 text-purple-800 font-bold rounded-full text-xs">
                   {res.subject}
                 </span>
               </div>
-              <div className="flex items-center">
+
+              <div className="flex items-center gap-4 my-2">
                 <span className="font-semibold text-gray-700">Status:</span>
                 <span
-                  className={`ml-2 px-4 py-2 rounded-full font-bold flex items-center gap-2 w-fit ${
+                  className={`px-4 py-2 rounded-full font-bold text-xs flex items-center gap-2 ${
                     res.studyMode === "Online"
                       ? "bg-green-100 text-green-700"
                       : "bg-red-100 text-red-700"
@@ -87,16 +98,20 @@ const ConnectionTable = ({ res, onDelete }) => {
                 </span>
               </div>
             </div>
+            <p className="text-xs text-gray-500  mt-1">
+                  Requested by: {res.request_by}
+                </p>
 
-            <div className="flex justify-between p-2 pt-4">
-              <NavLink to={`/update/${res._id}`}>
-                <button className="btn btn-sm bg-[#f55a00] hover:bg-orange-600 text-white border-none shadow-md hover:shadow-xl transform hover:scale-105 transition-all">
+            {/* Buttons */}
+            <div className="flex gap-3 pt-3">
+              <NavLink to={`/update/${res._id}`} className="flex-1">
+                <button className="w-full btn btn-sm bg-[#f55a00] hover:bg-orange-600 text-white border-none shadow-md hover:shadow-xl transform hover:scale-105 transition-all">
                   Update
                 </button>
               </NavLink>
               <button
                 onClick={() => handleDelete(res?._id)}
-                className="btn btn-sm bg-red-500 hover:bg-red-600 text-white border-none shadow-md hover:shadow-xl transform hover:scale-105 transition-all"
+                className="flex-1 btn btn-sm bg-red-500 hover:bg-red-600 text-white border-none shadow-md hover:shadow-xl transform hover:scale-105 transition-all"
               >
                 Delete
               </button>
@@ -104,7 +119,8 @@ const ConnectionTable = ({ res, onDelete }) => {
           </div>
         </div>
 
-        {/* Desktop Table View - Tor Original Design */}
+       {/* dektop table format */}
+       
         <div className="hidden lg:block overflow-x-auto rounded-2xl shadow-2xl border-2 border-[#f55a00] bg-white">
           <table className="table table-zebra w-full">
             <thead className="bg-[#f55a00] text-white text-lg">

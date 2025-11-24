@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import ImageSlider from '../Components/ImageSlider';
 import axios from 'axios';
 import PartnerCard from './PartnerCard';
+import Works from './Works';
+import Review from './Review';
 
 const Home = () => {
 
@@ -29,6 +31,8 @@ const Home = () => {
                    partners.map((partner , index) => <PartnerCard key={index} partner={partner}></PartnerCard>)
                   }  
             </div>
+            <Works></Works>
+            <Review></Review>
         </div>
     );
 };

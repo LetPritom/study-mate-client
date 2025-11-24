@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import logo from "../assets/study.png";
 import { NavLink } from "react-router";
 import { AuthContext } from "../AuthContex/AuthContext";
@@ -8,7 +8,6 @@ import { ClipLoader } from "react-spinners";
 const Navbar = () => {
   const { user, logoutFunction, loading } = useContext(AuthContext);
   console.log(user);
-
   const handleLogOut = () => {
     logoutFunction()
       .then(() => {
@@ -17,6 +16,20 @@ const Navbar = () => {
       .catch((err) => {
         toast.error(err);
       });
+  };
+
+  const [dark, setDark] = useState("");
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  useEffect(() => {
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const handleTheme = (checked) => {
+    setDark(checked);
+    setTheme(checked ? "dark" : "light");
   };
 
   return (
@@ -79,7 +92,11 @@ const Navbar = () => {
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 flex gap-5 font-semibold text-[#2563EB] ">
+          <ul
+            className={`menu menu-horizontal px-1 flex gap-5 font-semibold transition-all duration-300 text-[#2563EB] ${
+              dark ? "text-white" : "text-[#2563EB]"
+            }`}
+          >
             <NavLink to="/">
               <li className="hover:text-[#f55a00] cursor-pointer">Home</li>
             </NavLink>
@@ -99,7 +116,7 @@ const Navbar = () => {
 
             {user && (
               <NavLink to="my-connection">
-                <li className="hover:text-[#f55a00] cursor-pointer">
+                <li className="hover:text-[#f55a00] cursor-pointer ">
                   My Connections
                 </li>
               </NavLink>
@@ -115,6 +132,16 @@ const Navbar = () => {
           >
             Log in
           </a> */}
+
+          <div className="theme flex gap-2 items-center mx-5  px-5 py-2 bg-linear-to-r from-blue-500 to-pink-500 text-white  rounded-full">
+            <p className="text-sm font-semibold">{dark ? "Dark" : "Light"}</p>
+            <input
+              onChange={(e) => handleTheme(e.target.checked)}
+              type="checkbox"
+              defaultUnchecked
+              className="toggle"
+            />
+          </div>
 
           {loading ? (
             <ClipLoader color="#f55a00" />
@@ -143,10 +170,9 @@ const Navbar = () => {
                 }
               >
                 <div className="down flex flex-col justify-center">
-                  <NavLink to= '/profile'><p className="text-sm font-semibold my-2">
-                    Profile
-                  </p></NavLink>
-                  
+                  <NavLink to="/profile">
+                    <p className="text-sm font-semibold my-2">Profile</p>
+                  </NavLink>
                 </div>
 
                 <div className="button">

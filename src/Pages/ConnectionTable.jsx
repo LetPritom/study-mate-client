@@ -36,9 +36,13 @@ const ConnectionTable = ({ res, onDelete }) => {
   return (
     <div>
       <div className="w-10/12 max-w-7xl mx-auto my-10">
-        {/* Mobile e Card View, Desktop e Table View */}
+        {/* Mobile e Card View  Desktop e Table View */}
+
+
         <div className="block lg:hidden">
-          {/* Mobile Card View */}
+
+            
+          {/* Mobile Card er View */}
           <div className="bg-white rounded-2xl shadow-2xl border-2 border-[#f55a00] p-6 space-y-6">
             <div className="flex items-center gap-4">
               <div className="avatar">

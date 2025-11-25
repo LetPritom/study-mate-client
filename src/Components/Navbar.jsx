@@ -158,7 +158,6 @@ const Navbar = () => {
             <input
               onChange={(e) => handleTheme(e.target.checked)}
               type="checkbox"
-              defaultUnchecked
               className="toggle"
             />
           </div>

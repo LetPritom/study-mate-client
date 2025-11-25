@@ -38,12 +38,12 @@ const ConnectionTable = ({ res, onDelete }) => {
   return (
     <div>
       <div className="w-11/12 max-w-7xl mx-auto my-10">
-        {/* Mobile e Card View  Desktop e Table View */}
+          {/* phone er jonne */}
 
         <div className="block lg:hidden">
           {/* Mobile Card */}
           <div className="bg-white rounded-2xl shadow-2xl border-2 border-[#f55a00] p-5 space-y-5 overflow-hidden">
-            {/* Avatar + Name Section */}
+            {/* profile picture r name section */}
             <div className="flex items-start gap-4">
               <div className="avatar shrink-0">
                 <div className="mask mask-squircle w-20 h-20 ring-4 ring-[#f55a00] ring-offset-2">
@@ -62,9 +62,6 @@ const ConnectionTable = ({ res, onDelete }) => {
                   {res.name}
                 </h3>
                 <p className="text-sm text-gray-600 truncate">{res.location}</p>
-                <p className="text-xs text-gray-500 truncate mt-1">
-                  Requested by: {res.request_by}
-                </p>
               </div>
             </div>
 

@@ -39,7 +39,7 @@ const FindPartner = () => {
 
   const handleSort = () => {
     setLoading(true);
-    axios(`http://localhost:3000/sort-partner?level=${levelFilter}`).then(
+    axios(`https://study-mate-server-fawn.vercel.app/sort-partner?level=${levelFilter}`).then(
       (res) => {
         setFindPartners(res.data);
         setLoading(false)

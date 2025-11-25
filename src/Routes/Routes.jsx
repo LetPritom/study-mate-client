@@ -30,7 +30,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: <Private><Profile></Profile></Private>,
+        element: (
+          <Private>
+            <Profile></Profile>
+          </Private>
+        ),
       },
       {
         path: "/create-partner",
@@ -58,7 +62,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/my-connection",
-        element: <Private><Myconnection></Myconnection></Private>,
+        element: (
+          <Private>
+            <Myconnection></Myconnection>
+          </Private>
+        ),
       },
       {
         path: "/find-partner",

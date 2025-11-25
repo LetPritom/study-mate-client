@@ -46,10 +46,9 @@ const PartnerDetails = () => {
     axios.post(`https://study-mate-server-fawn.vercel.app/request/${details._id}` , requestDetails).then((res) => {
       // console.log(res.data)
       const data = res.data;
-      toast.success('Request Sent! Visit My Connection Page')
       console.log(data)
       setCount(!count)
-      toast.success('Data Will Be Saved on Database')
+      toast.success('Data Will Be Saved on Database! Please Visit My Connection Page')
     });
   }
 
@@ -79,26 +78,26 @@ const PartnerDetails = () => {
             </h2>
 
             <div className="study flex gap-2 text-center font-semibold">
-              <p className="px-3 py-2 border text-sm font-bold border-[#ff7f35] hover:border-white transition">
+              <p className="px-3 py-2 border text-sm font-bold border-[#ff7f35] transition">
                 {details.studyMode}
               </p>
-              <p className="px-3 py-2 border text-sm font-bold border-[#ff7f35] hover:border-white transition">
+              <p className="px-3 py-2 border text-sm font-bold border-[#ff7f35] transition">
                 Exp:{details.experienceLevel}
               </p>
-              <p className="flex items-center justify-center gap-1 px-3 py-2 border text-sm font-bold border-[#ff7f35] hover:border-white transition">
+              <p className="flex items-center justify-center gap-1 px-3 py-2 border text-sm font-bold border-[#ff7f35] transition">
                 <FaStar color="#ff7f35" />
                 {details.rating}
               </p>
             </div>
 
             <div className="study flex gap-2 text-center font-semibold">
-              <p className="px-3 py-2  text-sm font-bold border border-[#ff7f35] hover:border-white transition">
+              <p className="px-3 py-2  text-sm font-bold border border-[#ff7f35] transition">
                 {details.location}
               </p>
-              <p className="px-3 py-2 border text-sm font-bold  border-[#ff7f35] hover:border-white transition">
+              <p className="px-3 py-2 border text-sm font-bold  border-[#ff7f35] transition">
                 {details.availabilityTime}
               </p>
-              <p className="flex items-center justify-center gap-1 px-3 py-2 border text-sm font-bold  border-[#ff7f35] hover:border-white transition">Partner Count
+              <p className="flex items-center justify-center gap-1 px-3 py-2 border text-sm font-bold  border-[#ff7f35] transition">Partner Count
                 <IoPersonAdd color="#2563EB" />
                 {details.partnerCount}
               </p>

@@ -6,7 +6,7 @@ const PartnerCard = ({ partner }) => {
   const { _id } = partner;
   return (
     <div>
-      <div className="group relative bg-white/80 backdrop-blur-xl rounded-lg overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-purple-500/20 transition-all hover:-translate-y-2 duration-500 border border-white/50 min-w-52 min-h-62">
+      <div className="group relative bg-gray-400/20 backdrop-blur-xl rounded-lg overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-purple-500/20 transition-all hover:-translate-y-2 duration-500 border border-white/50 min-w-52 min-h-62">
         {/* Gradient Border Effect */}
         <div className="absolute inset-0 bg-linear-to-br from-[#2564ebb9] via-pink-200 to- opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl -z-10 scale-105"></div>
 
@@ -15,7 +15,7 @@ const PartnerCard = ({ partner }) => {
           <img
             src={partner.profileimage}
             alt={partner.name}
-            className="w-full h-52 sm:h-42  object-cover transition-transform duration-500 group-hover:scale-110"
+            className="w-full h-52 sm:h-42 object-cover transition-transform duration-500 group-hover:scale-110"
           />
 
           {/* demo badge for active status */}
@@ -58,9 +58,9 @@ const PartnerCard = ({ partner }) => {
         <div className="p-6 space-y-5">
           <div className="flex flex-col gap-1">
             <h2 className="text-md font-bold text-gray-800">{partner.name}</h2>
-            <h2 className="text-xs font-bold text-[#f55a00]">
+            {/* <h2 className="text-xs font-bold text-[#f55a00]">
               Exp: {partner.experienceLevel}
-            </h2>
+            </h2> */}
 
             
           </div>

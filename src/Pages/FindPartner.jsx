@@ -4,23 +4,26 @@ import PartnerCard from "./PartnerCard";
 import { RingLoader } from "react-spinners";
 
 const FindPartner = () => {
-  const [findPartners, setFindPartners] = useState([]);
+  const [findPartners, setFindPartners] = useState(0);
+  const [totalPage, setTotalPage] = useState(0);
+  const [currentPage , setCurrentPage] = useState(0)
+  const limit = 10;
   const [loading, setLoading] = useState(true);
 
   const [levelFilter, setLevelFilter] = useState("none");
   console.log(findPartners);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/partners?limit=10&skip=10`)
-      .then((res) => {
-        const data = res.data?.result;
-        setFindPartners(data);
-        setLoading(false);
-        console.log(data)
-      });
+    axios.get(`http://localhost:3000/partners?limit=${limit}&skip=${currentPage*limit}`).then((res) => {
+      const data = res.data;
+      const page = Math.ceil(data.total / limit);
+      setTotalPage(page)
+      setFindPartners(data?.result);
       
-  }, []);
+      setLoading(false);
+      console.log(page);
+    });
+  }, [currentPage]);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -41,21 +44,18 @@ const FindPartner = () => {
 
   const handleSort = () => {
     setLoading(true);
-    axios(`https://study-mate-server-fawn.vercel.app/sort-partner?level=${levelFilter}`).then(
-      (res) => {
-        setFindPartners(res.data);
-        setLoading(false)
-      }
-    );
+    axios(
+      `https://study-mate-server-fawn.vercel.app/sort-partner?level=${levelFilter}`
+    ).then((res) => {
+      setFindPartners(res.data);
+      setLoading(false);
+    });
   };
-
 
   return (
     <div>
       <div className="title w-10/12 mx-auto my-10 ">
-        <h1 className="text-4xl text-center my-5 font-semibold">
-          Find Now
-        </h1>
+        <h1 className="text-4xl text-center my-5 font-semibold">Find Now</h1>
         <h1 className="text-2xl text-center my-5 font-semibold">
           Explore StudyMate and Find Yours Partner
         </h1>
@@ -124,6 +124,21 @@ const FindPartner = () => {
           ))}
         </div>
       )}
+
+      <div className="flex justify-center flex-wrap gap-3 py-10">
+        {
+          currentPage > 0 && <button onClick={()=> setCurrentPage(currentPage-1)} className="btn"> {`<< Prev`}</button>
+        }
+        
+        {
+          [...Array(totalPage).keys()].map((i) => <button onClick={() => setCurrentPage(i)} className={`btn ${i === currentPage && `btn-primary`}`}>{i+1}</button>)
+        }
+
+        {
+          currentPage < totalPage-1 && <button onClick={()=> setCurrentPage(currentPage+1)} className="btn"> {`Next >>`}</button>
+        }
+        
+      </div>
     </div>
   );
 };

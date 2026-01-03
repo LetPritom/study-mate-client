@@ -35,9 +35,36 @@ const Navbar = () => {
     setTheme(checked ? "dark" : "light");
   };
 
+  const [show, setShow] = useState(true); // Scroll up/down visibility
+  const [top, setTop] = useState(true);   // Top position detection
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  const controlNavbar = () => {
+    if (typeof window !== "undefined") {
+      if (window.scrollY > lastScrollY) {
+        setShow(false); // Scroll down hide
+      } else {
+        setShow(true); // Scroll up show
+      }
+
+      setTop(window.scrollY < 50); // Detect top position
+      setLastScrollY(window.scrollY);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", controlNavbar);
+    return () => window.removeEventListener("scroll", controlNavbar);
+  }, [lastScrollY]);
+
   return (
-    <div className=" border-b border-gray-300">
-      <div className="navbar w-9/12 lg:w-10/12 mx-auto py-4">
+    <div className={`w-full fixed top-0 z-50 transition-transform duration-300 ${
+        show ? "translate-y-0" : "-translate-y-full"
+      }`}>
+      <div  className={`
+          navbar w-9/12 lg:w-10/12 mx-auto py-4 rounded-2xl transition-colors duration-500
+          ${top ? "bg-transparent" : "bg-white/20 backdrop-blur-2xl shadow-lg"}
+        `}>
         <div className="navbar-start">
           <div className="dropdown ">
             <div tabIndex={0} role="button" className=" mx-2 p-2 btn lg:hidden">

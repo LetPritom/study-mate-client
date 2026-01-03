@@ -6,9 +6,11 @@ import Footer from '../Components/Footer';
 const MainLayouts = () => {
     return (
         <div>
-            <Navbar></Navbar>
-            <Outlet></Outlet>
-            <Footer></Footer>
+            <Navbar />
+            <div style={{ paddingTop: '0px' }}>  {/* Navbar height অনুযায়ী */}
+                <Outlet />
+            </div>
+            <Footer />
         </div>
     );
 };

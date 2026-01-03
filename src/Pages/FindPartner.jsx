@@ -8,16 +8,18 @@ const FindPartner = () => {
   const [loading, setLoading] = useState(true);
 
   const [levelFilter, setLevelFilter] = useState("none");
-  console.log(levelFilter);
+  console.log(findPartners);
 
   useEffect(() => {
     axios
-      .get(`https://study-mate-server-fawn.vercel.app/partners`)
+      .get(`http://localhost:3000/partners?limit=10&skip=10`)
       .then((res) => {
-        const data = res.data;
+        const data = res.data?.result;
         setFindPartners(data);
         setLoading(false);
+        console.log(data)
       });
+      
   }, []);
 
   const handleSearch = (e) => {
@@ -116,7 +118,7 @@ const FindPartner = () => {
           <RingLoader color="#ff9c07d7" />
         </div>
       ) : (
-        <div className="top-rated px-5 w-10/12 mx-auto grid gird-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 space-y-5 my-10">
+        <div className="top-rated px-5 w-10/12 mx-auto grid gird-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 space-y-5 my-10">
           {findPartners.map((partner, index) => (
             <PartnerCard key={index} partner={partner}></PartnerCard>
           ))}

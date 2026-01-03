@@ -8,7 +8,7 @@ import { IoLocationSharp } from 'react-icons/io5';
 
 const Footer = () => {
     return (
-        <div className='h-auto bg-linear-to-br from-slate-900 via-blue-950 to-black'>
+        <div className='h-auto  bg-linear-to-br from-slate-900 via-blue-950 to-black'>
             <div className='w-10/12 mx-auto flex flex-col md:flex-row lg:flex-row justify-between gap-5 py-5 mt-10'>
             <div className="img-title w-64">
                 <img className='w-20 h-20' src={logo} alt="" />

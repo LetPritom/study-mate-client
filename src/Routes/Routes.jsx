@@ -46,11 +46,8 @@ export const router = createBrowserRouter([
       },
       {
         path: "/partnersDetails/:id",
-        element: (
-          <Private>
+        element:
             <PartnerDetails></PartnerDetails>
-          </Private>
-        ),
       },
       {
         path: "/update/:upId",

@@ -43,7 +43,7 @@ const Home = () => {
         Top Study Partners
       </h1>
 
-      <div className="top-rated px-5 w-10/12 mx-auto grid gird-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 space-y-5 my-10">
+      <div className="top-rated px-5 w-10/12 mx-auto grid gird-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 space-y-5 my-10">
         {partners.map((partner, index) => (
           <div
             key={index}

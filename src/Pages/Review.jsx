@@ -14,15 +14,15 @@ const Review = () => {
   return (
     <div>
       <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl md:text-5xl font-bold text-center text-[#d94f00] opacity-80  mb-16">
+        <div className=" px-5">
+          <h2 className="text-4xl md:text-5xl font-bold text-center text-[#d94f00] opacity-80 mb-16">
             Students Are Loving StudyMate
           </h2>
 
           <div className="grid md:grid-cols-3 gap-10">
             {/* Review 1 */}
             <div data-aos="fade-right" data-aos-delay="600">
-              <div className="bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-700">
+              <div className="bg-gray-800 p-8 max-h-74  rounded-2xl shadow-xl border border-gray-700">
                 <div className="flex items-center mb-6">
                   <img
                     src={
@@ -38,14 +38,14 @@ const Review = () => {
                 </div>
                 <p className="text-gray-300">
                   I never understood Physics at all. Thanks to StudyMate, I
-                  found an amazing study buddy.
+                  found an amazing study buddy for Physics.
                 </p>
                 <div className="flex mt-4 text-[#f55a00]">★★★★★</div>
               </div>
             </div>
 
             <div data-aos="fade-right" data-aos-delay="800">
-              <div className="bg-gray-800 p-8 rounded-2xl shadow-xl border rder-gray-700">
+              <div className="bg-gray-800 max-h-74  p-8 rounded-2xl shadow-xl border rder-gray-700">
                 <div className="flex items-center mb-6">
                   <img
                     src={
@@ -72,7 +72,7 @@ const Review = () => {
 
             {/* Review 3 */}
             <div data-aos="fade-right" data-aos-delay="1000">
-              <div className="bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-700">
+              <div className="bg-gray-800 max-h-74  p-8 rounded-2xl shadow-xl border border-gray-700">
                 <div className="flex items-center mb-6">
                   <img
                     src={

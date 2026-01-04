@@ -58,9 +58,9 @@ const PartnerCard = ({ partner }) => {
         <div className="p-6 space-y-5">
           <div className="flex flex-col gap-1">
             <h2 className="text-md font-bold text-gray-800">{partner.name}</h2>
-            {/* <h2 className="text-xs font-bold text-[#f55a00]">
+            <h2 className="text-xs font-bold text-gray-800">
               Exp: {partner.experienceLevel}
-            </h2> */}
+            </h2>
 
             
           </div>

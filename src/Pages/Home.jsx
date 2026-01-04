@@ -12,7 +12,7 @@ const Home = () => {
     AOS.init({
       duration: 800, // animation time
       easing: "ease-out",
-      once: true, // 
+      once: true, //
       offset: 100,
     });
   }, []);
@@ -23,7 +23,7 @@ const Home = () => {
     axios(`https://study-mate-server-fawn.vercel.app/partners`).then((res) => {
       const ratingSort = res.data;
       const rated = ratingSort.sort((a, b) => b.rating - a.rating);
-      const slice = rated.slice(0, 6); 
+      const slice = rated.slice(0, 6);
       setPartners(slice);
       console.log(res.data);
     });
@@ -31,10 +31,10 @@ const Home = () => {
 
   return (
     <div>
-        <div data-aos="zoom-up" data-aos-delay="500">
-            <ImageSlider  />
-        </div>
-      
+      <div data-aos="zoom-up" data-aos-delay="500">
+        <ImageSlider />
+      </div>
+
       <h1
         data-aos="fade-down"
         data-aos-delay="100"
@@ -56,14 +56,23 @@ const Home = () => {
         ))}
       </div>
 
-      <div data-aos="fade-down" data-aos-delay="800">
-        <Works />
+      <div className="div bg-gray-800">
+        <div
+          className="w-10/12 mx-auto"
+          data-aos="fade-down"
+          data-aos-delay="800"
+        >
+          <Works />
+        </div>
       </div>
 
-      <div data-aos="fade-right" data-aos-delay="500" >
-        <Review ></Review>
+      <div
+        className="w-10/12 mx-auto"
+        data-aos="fade-right"
+        data-aos-delay="500"
+      >
+        <Review></Review>
       </div>
-      
     </div>
   );
 };

@@ -63,7 +63,7 @@ const Navbar = () => {
       }`}>
       <div  className={`
           navbar w-9/12 lg:w-10/12 mx-auto py-4 rounded-2xl transition-colors duration-500
-          ${top ? "bg-transparent" : "bg-white/20 backdrop-blur-2xl shadow-lg"}
+          ${top ? "bg-transparent" : "bg-white/2'0 backdrop-blur-2xl shadow-lg"}
         `}>
         <div className="navbar-start">
           <div className="dropdown ">

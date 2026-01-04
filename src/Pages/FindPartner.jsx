@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import PartnerCard from "./PartnerCard";
 import { RingLoader } from "react-spinners";
+import SkeletonLoader from "../Loader/SkeletonLoader";
 
 const FindPartner = () => {
   const [findPartners, setFindPartners] = useState(0);
@@ -54,7 +55,7 @@ const FindPartner = () => {
 
   return (
     <div>
-      <div className="title w-10/12 mx-auto my-10 ">
+      <div className="title w-10/12 mx-auto my-10 py-10 ">
         <h1 className="text-4xl text-center my-5 font-semibold">Find Now</h1>
         <h1 className="text-2xl text-center my-5 font-semibold">
           Explore StudyMate and Find Yours Partner
@@ -114,9 +115,7 @@ const FindPartner = () => {
       </div>
 
       {loading ? (
-        <div className="div h-[80vh] w-10/12 mx-auto flex justify-center items-center">
-          <RingLoader color="#ff9c07d7" />
-        </div>
+          <SkeletonLoader count={findPartners.length}></SkeletonLoader>
       ) : (
         <div className="top-rated px-5 w-10/12 mx-auto grid gird-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 space-y-5 my-10">
           {findPartners.map((partner, index) => (

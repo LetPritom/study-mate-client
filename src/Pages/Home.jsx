@@ -72,6 +72,13 @@ const Home = () => {
         data-aos-delay="500"
       >
         <Review></Review>
+        
+
+        <div className="cta-button mx-auto w-36 my-12">
+        <button className="border border-[#f55a00] bg-transparent animate-bounce hover:animate-none 
+                         px-4 py-2 rounded-md cursor-pointer font-semibold text-[#f55a00]
+                        transition-all duration-200 ease-in-out shadow-sm hover:shadow-md">Find Partners</button>
+        </div>
       </div>
     </div>
   );

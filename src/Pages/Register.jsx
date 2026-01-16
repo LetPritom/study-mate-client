@@ -63,7 +63,7 @@ const handleGoogleSignin = () => {
 
   return (
     <div className="hero bg-linear-to-br from-slate-900 to-blue-950 min-h-screen flex items-center justify-center">
-      <div className="hero-content flex-col">
+      <div className="hero-content flex-col my-16">
         <div className="text-center lg:text-left">
           <h1 className="text-5xl text-white font-bold">Register Now</h1>
         </div>

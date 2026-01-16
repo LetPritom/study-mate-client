@@ -5,11 +5,12 @@ import Footer from '../Components/Footer';
 
 const MainLayouts = () => {
     return (
-        <div>
+        <div className='flex flex-col'>
             <Navbar />
-            <div style={{ paddingTop: '0px' }}>  {/* Navbar height অনুযায়ী */}
+            <div className="div flex-1">
                 <Outlet />
             </div>
+                
             <Footer />
         </div>
     );

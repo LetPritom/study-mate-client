@@ -36,7 +36,7 @@ const Navbar = () => {
   };
 
   const [show, setShow] = useState(true); // Scroll up/down visibility
-  const [top, setTop] = useState(true);   // Top position detection
+  const [top, setTop] = useState(true); // Top position detection
   const [lastScrollY, setLastScrollY] = useState(0);
 
   const controlNavbar = () => {
@@ -58,13 +58,17 @@ const Navbar = () => {
   }, [lastScrollY]);
 
   return (
-    <div className={`w-full fixed top-0 z-50 transition-transform duration-300 ${
+    <div
+      className={`w-full fixed top-0 z-50 transition-transform duration-300 ${
         show ? "translate-y-0" : "-translate-y-full"
-      }`}>
-      <div  className={`
+      }`}
+    >
+      <div
+        className={`
           navbar w-9/12 lg:w-10/12 mx-auto py-4 rounded-2xl transition-colors duration-500
           ${top ? "bg-transparent" : "bg-white/2'0 backdrop-blur-2xl shadow-lg"}
-        `}>
+        `}
+      >
         <div className="navbar-start">
           <div className="dropdown ">
             <div tabIndex={0} role="button" className=" mx-2 p-2 btn lg:hidden">
@@ -181,7 +185,9 @@ const Navbar = () => {
           {/* theme toggle button */}
 
           <div className="theme flex gap-1 items-center mx-2  px-2 py-2 border border-[#f55a00] text-[#f55a00]  rounded-full">
-            <p className="text-sm font-semibold sm:text-es">{dark ? "Dark" : "Light"}</p>
+            <p className="text-sm font-semibold sm:text-es">
+              {dark ? "Dark" : "Light"}
+            </p>
             <input
               onChange={(e) => handleTheme(e.target.checked)}
               type="checkbox"
@@ -196,9 +202,7 @@ const Navbar = () => {
               <button
                 className="cursor-pointer"
                 popoverTarget="popover-1"
-                style={
-                  { anchorName: "--anchor-1" } 
-                }
+                style={{ anchorName: "--anchor-1" }}
               >
                 <img
                   className="h-10 w-10 rounded-full"
@@ -211,9 +215,7 @@ const Navbar = () => {
                 className="dropdown menu w-32 flex flex-col justify-center rounded-lg bg-white shadow-sm"
                 popover="auto"
                 id="popover-1"
-                style={
-                  { positionAnchor: "--anchor-1" } 
-                }
+                style={{ positionAnchor: "--anchor-1" }}
               >
                 <div className="down flex flex-col justify-center">
                   <NavLink to="/profile">
@@ -237,9 +239,8 @@ const Navbar = () => {
           ) : (
             <NavLink to="/login">
               <button
-                className="border border-[#f55a00] bg-transparent text-[#2563EB]  
-                         px-3 py-1.5 rounded-lg cursor-pointer font-semibold
-                        hover:text-[#f55a00] hover:border-[#2563EB]
+                className="border border-[#f55a00] bg-transparent
+                         px-3 py-1.5 rounded-lg cursor-pointer font-semibold text-[#f55a00] 
                         transition-all duration-200 ease-in-out shadow-sm hover:shadow-md"
               >
                 Login

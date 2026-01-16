@@ -13,7 +13,7 @@ const Review = () => {
   }, []);
   return (
     <div>
-      <section className="py-20 bg-gray-50">
+      <section className="py-20">
         <div className=" px-5">
           <h2 className="text-4xl md:text-5xl font-bold text-center text-[#d94f00] opacity-80 mb-16">
             Students Are Loving StudyMate

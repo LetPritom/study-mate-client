@@ -13,6 +13,7 @@ const Login = () => {
     setLoading,
     signInWithEmailAndPassFunc,
     signInWithGoogleFunc,
+    signInWithFacebookFunc,
   } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -41,7 +42,7 @@ const Login = () => {
     setLoading(true);
     signInWithGoogleFunc()
       .then(() => {
-        toast.success("Welcome! Google login successful 🎉");
+        toast.success("Welcome");
         navigate(from, { replace: true });
       })
       .catch((err) => {
@@ -49,6 +50,18 @@ const Login = () => {
       })
       .finally(() => setLoading(false));
   };
+
+
+  const handleFacebookSignIn = () => {
+    signInWithFacebookFunc()
+    .then(() => {
+        toast.success('Welcome!')
+        navigate(from , {replace:true})
+    }).catch((err) => {
+        toast.error(err.message||'Failed')
+    })
+    .finally(()=> setLoading(false))
+  }
 
   return (
     <div className="min-h-screen bg-linear-to-br from-slate-900 to-blue-950 flex items-center justify-center p-6 md:p-0">
@@ -168,7 +181,7 @@ const Login = () => {
             {/* facebook button */}
 
             <button
-              onClick={handleGoogleSignIn}
+              onClick={handleFacebookSignIn}
               className="w-full my-2 flex items-center justify-center gap-3 py-4 bg-white/10 border border-white/30 rounded-xl text-white font-medium hover:bg-white/20 transition-all duration-300 cursor-pointer"
             >
               <FaFacebookSquare className="text-blue-600 text-2xl"/>

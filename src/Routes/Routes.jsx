@@ -12,6 +12,8 @@ import Private from "../PrivateRoutes/Private";
 import Profile from "../Pages/Profile";
 import PartnerDetails from "../Pages/PartnerDetails";
 import UpdateForm from "../Pages/UpdateForm";
+import DashboardLayout from "../Layouts/DashboardLayout";
+import Dashboard from "../Dashboard/Dashboard";
 
 export const router = createBrowserRouter([
   {
@@ -76,4 +78,26 @@ export const router = createBrowserRouter([
       },
     ],
   },
+
+  {
+  path:'/dashboard',
+  element:<Private>
+    <DashboardLayout></DashboardLayout>
+  </Private>,
+  children:[
+    {
+      index:true,
+      element:<Dashboard></Dashboard>
+    },
+    {
+      path:'my-connection',
+      element:<Myconnection></Myconnection>
+    },
+    {
+      path:'create-partner',
+      element:<CreatePartner></CreatePartner>
+    },
+  ]
+}
 ]);
+

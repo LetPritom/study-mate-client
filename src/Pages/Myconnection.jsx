@@ -37,7 +37,7 @@ const Myconnection = () => {
   console.log(request);
   return (
     <div>
-      <h1 className="text-center text-2xl font-bold my-10 text-[#f55a00]">
+      <h1 className="text-center text-2xl font-bold my-5 text-[#f55a00]">
         My Connection
       </h1>
 
@@ -47,7 +47,7 @@ const Myconnection = () => {
         </div>
       ) : (
         <div className="px-5 my-5 w-10/12 mx-auto">
-          {request.map((res, index) => (
+          {request?.map((res, index) => (
             <ConnectionTable
               onDelete={handleDeleteFromUi}
               key={index}

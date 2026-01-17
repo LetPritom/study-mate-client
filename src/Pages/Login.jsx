@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../AuthContex/AuthContext";
 import { toast } from "react-toastify";
@@ -6,6 +6,7 @@ import { CiSearch } from "react-icons/ci";
 import logo from "../assets/study.png";
 import { FaFacebook } from "react-icons/fa6";
 import { FaFacebookSquare } from "react-icons/fa";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
   const {
@@ -19,24 +20,14 @@ const Login = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleSignInWithEmailAndPass = (e) => {
-    e.preventDefault();
-    setLoading(true);
-
-    signInWithEmailAndPassFunc(email, password)
-      .then((result) => {
-        setUser(result.user);
-        toast.success("Successfully logged in! Explore StudyMate now 🚀");
-        navigate(from, { replace: true });
-      })
-      .catch((err) => {
-        toast.error(err.message || "Login failed. Please try again.");
-      })
-      .finally(() => setLoading(false));
-  };
+  const {
+    register,
+    handleSubmit,
+    setValue, // demo fill-এর জন্য
+    formState: { errors, isSubmitting },
+  } = useForm({
+    mode: "onChange",
+  });
 
   const handleGoogleSignIn = () => {
     setLoading(true);
@@ -51,17 +42,47 @@ const Login = () => {
       .finally(() => setLoading(false));
   };
 
-
   const handleFacebookSignIn = () => {
     signInWithFacebookFunc()
-    .then(() => {
-        toast.success('Welcome!')
-        navigate(from , {replace:true})
-    }).catch((err) => {
-        toast.error(err.message||'Failed')
-    })
-    .finally(()=> setLoading(false))
-  }
+      .then(() => {
+        toast.success("Welcome!");
+        navigate(from, { replace: true });
+      })
+      .catch((err) => {
+        toast.error(err.message || "Failed");
+      })
+      .finally(() => setLoading(false));
+  };
+
+  const handleDemoUser = () => {
+    // Predefined demo data
+    const demoData = {
+      email: "demo@studymate.com",
+      password: "Demo@123", // strong password
+    };
+
+    // Auto fill form fields
+    setValue("email", demoData.email);
+    setValue("password", demoData.password);
+
+    // Auto submit form
+    handleSubmit(onSubmit)(); // This triggers the form submission
+  };
+
+  const onSubmit = (data) => {
+    setLoading(true);
+    const { email, password } = data;
+    signInWithEmailAndPassFunc(email, password)
+      .then((result) => {
+        setUser(result.user);
+        toast.success("Successfully logged in! Explore StudyMate now 🚀");
+        navigate(from, { replace: true });
+      })
+      .catch((err) => {
+        toast.error(err.message || "Login failed. Please try again.");
+      })
+      .finally(() => setLoading(false));
+  };
 
   return (
     <div className="min-h-screen bg-linear-to-br from-slate-900 to-blue-950 flex items-center justify-center p-6 md:p-0">
@@ -104,35 +125,54 @@ const Login = () => {
             </h1>
           </div>
 
-          <form onSubmit={handleSignInWithEmailAndPass} className="space-y-6">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             {/* Email */}
-            <div className="relative">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="peer w-full px-5 pt-8 pb-3 bg-transparent border border-white/30 rounded-xl text-white placeholder-transparent focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 transition-all"
-                placeholder="Enter your email"
-                required
-              />
-              <label className="absolute left-5 top-2 text-sm text-gray-400 peer-focus:text-purple-400 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-2 peer-focus:text-sm transition-all pointer-events-none">
-                Email
-              </label>
+            <div>
+              <div className="relative">
+                <input
+                  type="email"
+                  {...register("email", {
+                    required: "Email is required",
+                  })}
+                  className="peer w-full px-5 pt-8 pb-3 bg-transparent border border-white/30 rounded-xl text-white placeholder-transparent focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 transition-all"
+                  placeholder="Enter your email"
+                />
+                <label className="absolute left-5 top-2 text-sm text-gray-400 peer-focus:text-purple-400 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-2 peer-focus:text-sm transition-all pointer-events-none">
+                  Email
+                </label>
+              </div>
+              {errors.email && (
+                <p className="mt-1 text-red-400 text-sm">
+                  {errors.email.message}
+                </p>
+              )}
             </div>
 
             {/* Password */}
-            <div className="relative">
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="peer w-full px-5 pt-8 pb-3 bg-transparent border border-white/30 rounded-xl text-white placeholder-transparent focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 transition-all"
-                placeholder="Enter password"
-                required
-              />
-              <label className="absolute left-5 top-2 text-sm text-gray-400 peer-focus:text-purple-400 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-2 peer-focus:text-sm transition-all pointer-events-none">
-                Password
-              </label>
+            <div>
+              <div className="relative">
+                <input
+                  type="password"
+                  {...register("password", {
+                    required: "Password is required",
+                    minLength: { value: 6, message: "At least 6 characters" },
+                    pattern: {
+                      value: /^(?=.*[A-Z])(?=.*[a-z]).+$/,
+                      message: "Must contain uppercase & lowercase",
+                    },
+                  })}
+                  className="peer w-full px-5 pt-8 pb-3 bg-transparent border border-white/30 rounded-xl text-white placeholder-transparent focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 transition-all"
+                  placeholder="Enter password"
+                />
+                <label className="absolute left-5 top-2 text-sm text-gray-400 peer-focus:text-purple-400 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-2 peer-focus:text-sm transition-all pointer-events-none">
+                  Password
+                </label>
+              </div>
+              {errors.password && (
+                <p className="mt-1 text-red-400 text-sm">
+                  {errors.password.message}
+                </p>
+              )}
             </div>
 
             <div className="flex items-center justify-between text-sm">
@@ -151,6 +191,15 @@ const Login = () => {
             <button type="submit" className="btn w-full pro-gradient-btn py-5">
               Log In
             </button>
+
+            <button
+              type="button"
+              onClick={handleDemoUser}
+              disabled={isSubmitting}
+              className="btn w-full pro-gradient-btn py-5"
+            >
+              Use Demo Account
+            </button>
           </form>
 
           <div className="mt-6">
@@ -160,7 +209,7 @@ const Login = () => {
                 {/* thin gray line */}
               </div>
               <div className="relative flex justify-center">
-                <span className="px-6 py-1  text-sm rounded-full">
+                <span className="px-6 py-1 text-white text-sm rounded-full">
                   Or continue with
                 </span>
               </div>
@@ -175,7 +224,7 @@ const Login = () => {
                 alt="Google"
                 className="w-6 h-6"
               />
-             Continue With Google
+              Continue With Google
             </button>
 
             {/* facebook button */}
@@ -184,8 +233,8 @@ const Login = () => {
               onClick={handleFacebookSignIn}
               className="w-full my-2 flex items-center justify-center gap-3 py-4 bg-white/10 border border-white/30 rounded-xl text-white font-medium hover:bg-white/20 transition-all duration-300 cursor-pointer"
             >
-              <FaFacebookSquare className="text-blue-600 text-2xl"/>
-             Continue With Facebook
+              <FaFacebookSquare className="text-blue-600 text-2xl" />
+              Continue With Facebook
             </button>
 
             {/* twitter */}

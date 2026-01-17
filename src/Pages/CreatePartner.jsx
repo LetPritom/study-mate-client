@@ -56,7 +56,7 @@ const handleCreatePartner = (e) => {
 
 
   return (
-    <div className="max-w-xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
+    <div className="max-w-xl mx-auto mt-5 p-6 bg-white shadow-lg rounded-lg">
       <h2 className="text-2xl text-[#f55a00] font-bold mb-5 text-center">
         Create New Partner
       </h2>

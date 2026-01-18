@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import logo from "../assets/study.png";
 import { NavLink } from "react-router";
 import { AuthContext } from "../AuthContex/AuthContext";
@@ -6,7 +6,12 @@ import { toast } from "react-toastify";
 import { ClipLoader } from "react-spinners";
 import { GoHomeFill } from "react-icons/go";
 import { FaBookOpenReader, FaUsersViewfinder } from "react-icons/fa6";
-import { MdOutlineCreateNewFolder } from "react-icons/md";
+import {
+  MdOutlineCreateNewFolder,
+  MdOutlineLogout,
+  MdOutlineSpaceDashboard,
+} from "react-icons/md";
+import { RiArrowDropDownLine } from "react-icons/ri";
 
 const Navbar = () => {
   const { user, logoutFunction, loading } = useContext(AuthContext);
@@ -38,6 +43,8 @@ const Navbar = () => {
   const [show, setShow] = useState(true); // Scroll up/down visibility
   const [top, setTop] = useState(true); // Top position detection
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [open, setOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   const controlNavbar = () => {
     if (typeof window !== "undefined") {
@@ -116,6 +123,12 @@ const Navbar = () => {
                   </li>
                 </NavLink>
               )}
+
+              <NavLink to="/about">
+                <li className="hover:text-[#f55a00] cursor-pointer">
+                  About
+                </li>
+              </NavLink>
             </ul>
           </div>
           <div className="logo flex gap-2 items-center ">
@@ -170,6 +183,12 @@ const Navbar = () => {
                 </div>
               </NavLink>
             )}
+
+            <NavLink to="/about">
+                <li className="hover:text-[#f55a00] cursor-pointer">
+                  About
+                </li>
+              </NavLink>
           </ul>
         </div>
         <div className="navbar-end">
@@ -195,53 +214,86 @@ const Navbar = () => {
             />
           </div>
 
-          {loading ? (
-            <ClipLoader color="#f55a00" />
-          ) : user ? (
-            <div className="img">
+          {user ? (
+            <div
+              className="relative z-50 hover:bg-[#f55a00]/20 p-1 rounded-full transition duration-400 "
+              ref={dropdownRef}
+            >
+              {/* Avatar */}
               <button
-                className="cursor-pointer"
-                popoverTarget="popover-1"
-                style={{ anchorName: "--anchor-1" }}
+                onClick={() => setOpen(!open)}
+                className="focus:outline-none flex items-center  gap-2 p-1 cursor-pointer"
               >
-                <img
-                  className="h-10 w-10 rounded-full"
-                  src={user.photoURL}
-                  alt="user-image"
-                />
+                {!loading && user && (
+                  <img
+                    src={user?.photoURL}
+                    alt="user"
+                    className="h-8 w-8 rounded-full ring-2 ring-[#f55a00] 
+                              hover:ring-purple-400 transition"
+                  />
+                )}
+
+                {open ? (
+                  <RiArrowDropDownLine className="text-2xl cursor-pointer -scale-100 transition duration-250" />
+                ) : (
+                  <RiArrowDropDownLine className="text-2xl cursor-pointer transition duration-250" />
+                )}
               </button>
 
-              <ul
-                className="dropdown menu w-32 flex flex-col justify-center rounded-lg bg-white shadow-sm"
-                popover="auto"
-                id="popover-1"
-                style={{ positionAnchor: "--anchor-1" }}
+              {/* Dropdown */}
+              <div
+                className={`absolute right-0 mt-3 w-56 rounded-xl
+                  bg-linear-to-b from-blue-900/40 to-blue-900/40
+                text-white shadow-xl border border-[#f55a00]/40
+                  transform transition-all duration-200 ease-out
+                  ${
+                    open
+                      ? "scale-100 opacity-100"
+                      : "scale-95 opacity-0 pointer-events-none"
+                  }`}
               >
-                <div className="down flex flex-col justify-center">
-                  <NavLink to="/profile">
-                    <p className="text-sm font-semibold my-2">Profile</p>
-                  </NavLink>
+                {/* User info */}
+                <div className="px-4 py-3 border-b border-[#f55a00]/40">
+                  <p
+                    className="text-sm font-semibold truncate"
+                    title={user?.displayName}
+                  >
+                    {user.displayName}
+                  </p>
                 </div>
 
-                <div className="button">
+                {/* Menu */}
+                <div className="flex flex-col px-2 py-2">
+                  <NavLink
+                    to="/dashboard"
+                    className="px-3 py-2 rounded-lg text-sm font-medium cursor-pointer text-[#f55a00]
+                    hover:bg-[#f55a00]/30 transition flex items-center gap-2"
+                    onClick={() => setOpen(false)}
+                  >
+                    <MdOutlineSpaceDashboard />
+                    Dashboard
+                  </NavLink>
                   <button
                     onClick={handleLogOut}
-                    className="border border-[#f55a00] bg-transparent text-[#2563EB]  
-                         px-3 py-1.5 rounded-lg cursor-pointer font-semibold
-                        hover:text-[#f55a00] hover:border-[#2563EB]
-                        transition-all duration-200 ease-in-out shadow-sm hover:shadow-md"
+                    className="px-3 py-2 rounded-lg text-sm font-medium text-red-500 hover:text-white
+                    hover:bg-[#f55a00]/30 transition flex items-center gap-2 cursor-pointer"
                   >
-                    Log Out
+                    <MdOutlineLogout />
+                    Logout
                   </button>
                 </div>
-              </ul>
+              </div>
             </div>
           ) : (
             <NavLink to="/login">
               <button
-                className="border border-[#f55a00] bg-transparent
-                         px-3 py-1.5 rounded-lg cursor-pointer font-semibold text-[#f55a00] 
-                        transition-all duration-200 ease-in-out shadow-sm hover:shadow-md"
+                className="
+                    relative px-5 py-2 rounded-xl font-semibold text-md
+                    text-[#f55a00]
+                    bg-transparent
+                    border border-[#f55a00]
+                    cursor-pointer
+"
               >
                 Login
               </button>

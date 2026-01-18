@@ -6,6 +6,9 @@ import Works from "./Works";
 import Review from "./Review";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import PrivacyPolicy from "./PrivacyPolicy/PrivacyPolicy";
+import Newsletter from "./Newsletter/Newsletter";
+import FeaturesSection from "./FeaturesSection/FeaturesSection";
 
 const Home = () => {
   useEffect(() => {
@@ -34,6 +37,12 @@ const Home = () => {
       <div data-aos="zoom-up" data-aos-delay="500">
         <ImageSlider />
       </div>
+
+      <div className="div w-10/12 mx-auto">
+         <FeaturesSection></FeaturesSection>
+      </div>
+
+      
 
       <h1
         data-aos="fade-down"
@@ -79,6 +88,8 @@ const Home = () => {
                          px-4 py-2 rounded-md cursor-pointer font-semibold text-[#f55a00]
                         transition-all duration-200 ease-in-out shadow-sm hover:shadow-md">Find Partners</button>
         </div>
+        <PrivacyPolicy />
+        <Newsletter></Newsletter>
       </div>
     </div>
   );

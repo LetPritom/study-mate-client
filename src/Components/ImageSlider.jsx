@@ -6,6 +6,7 @@ import image2 from "../assets/image2.jpg";
 import image3 from "../assets/image3.jpg";
 import image4 from "../assets/image4.jpg";
 import image5 from "../assets/image5.jpg";
+import { Link } from "react-router";
 
 const images = [
   {
@@ -83,7 +84,7 @@ const ImageSlider = () => {
                       key={current} 
                       className="animate-fadeSlideUp" 
                     >
-                      <h1 className="text-4xl md:text-7xl font-extrabold mb-2 bg-clip-text text-transparent bg-linear-to-r from-white to-purple-400">
+                      <h1 className="text-4xl md:text-6xl font-extrabold mb-2 bg-clip-text text-transparent bg-linear-to-r from-white to-purple-400">
                         {images[current].title}
                       </h1>
                       <p className="text-xl md:text-3xl font-semibold opacity-70 animate-delay-300">
@@ -92,6 +93,12 @@ const ImageSlider = () => {
                       <p className="text-lg mt-2 font-medium opacity-70 animate-delay-500">
                         {images[current].caption}
                       </p>
+                      <Link to='/find-partner'>
+                      <button className="btn mt-2 bg-linear-to-r from-white to-purple-400">
+                        Explore Partners
+                      </button>
+                      </Link>
+                      
                     </div>
                   </div>
                 </div>
@@ -102,17 +109,17 @@ const ImageSlider = () => {
           {/* Left Arrow */}
           <button
             onClick={prevSlide}
-            className="absolute cursor-pointer left-6 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-4 rounded-full transition-all duration-300"
+            className="absolute cursor-pointer left-6 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-2 rounded-full transition-all duration-300"
           >
-            <ChevronLeft className="w-8 h-8" />
+            <ChevronLeft className="w-4 h-4" />
           </button>
 
           {/* Right Arrow */}
           <button
             onClick={nextSlide}
-            className="absolute cursor-pointer right-6 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-4 rounded-full transition-all duration-300"
+            className="absolute cursor-pointer right-6 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-2 rounded-full transition-all duration-300"
           >
-            <ChevronRight className="w-8 h-8" />
+            <ChevronRight className="w-4 h-4" />
           </button>
 
           {/* Dots Indicator */}

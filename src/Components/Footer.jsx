@@ -5,6 +5,7 @@ import { FaWhatsappSquare } from 'react-icons/fa';
 import { IoMdCall } from 'react-icons/io';
 import { SiGmail } from 'react-icons/si';
 import { IoLocationSharp } from 'react-icons/io5';
+import { Link } from 'react-router';
 
 const Footer = () => {
     return (
@@ -28,10 +29,15 @@ const Footer = () => {
             <div className="info-links">
                 <ul className='text-white flex flex-col gap-2'>
                     <li className='text-xl'>Useful Link</li>
+                    <Link to='/about'>
                     <li className='hover:underline cursor-pointer'>About</li>
+                    </Link>
+                    
                     <li className='hover:underline cursor-pointer'>Support</li>
                     <li className='hover:underline cursor-pointer'>Student Help</li>
-                    <li className='hover:underline cursor-pointer'>Privacy</li>
+                    <Link to='/Privacy'>
+                     <li className='hover:underline cursor-pointer'>Privacy</li></Link>
+                   
                     <li className='hover:underline cursor-pointer'>Legal</li>
                 </ul>
             </div>

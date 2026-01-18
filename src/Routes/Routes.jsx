@@ -14,6 +14,8 @@ import PartnerDetails from "../Pages/PartnerDetails";
 import UpdateForm from "../Pages/UpdateForm";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import Dashboard from "../Dashboard/Dashboard";
+import PrivacyPolicy from "../Pages/PrivacyPolicy/PrivacyPolicy";
+import About from "../Pages/Aboute/About";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +31,14 @@ export const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login></Login>,
+      },
+      {
+        path: "/about",
+        element: <About></About>,
+      },
+      {
+        path: "/Privacy",
+        element: <PrivacyPolicy></PrivacyPolicy>,
       },
       {
         path: "/profile",

@@ -95,7 +95,7 @@ const Sidebar = () => {
 
 
 
-              <NavLink to="/dashboard/my-profile">
+              <NavLink to="/dashboard/profile">
                 <Menu title={"My-profile"} icon={<MdPerson />}>
                   My profile
                 </Menu>

@@ -16,6 +16,8 @@ import DashboardLayout from "../Layouts/DashboardLayout";
 import Dashboard from "../Dashboard/Dashboard";
 import PrivacyPolicy from "../Pages/PrivacyPolicy/PrivacyPolicy";
 import About from "../Pages/Aboute/About";
+import Support from "../Pages/Support/Support";
+import StudentHelp from "../Pages/Support/StudentHelp/StudentHelp";
 
 export const router = createBrowserRouter([
   {
@@ -81,6 +83,14 @@ export const router = createBrowserRouter([
         path: "/find-partner",
         element: <FindPartner></FindPartner>,
       },
+      {
+        path: "/support",
+        element: <Support></Support>,
+      },
+      {
+        path: "/student-help",
+        element: <StudentHelp></StudentHelp>,
+      },
 
       {
         path: "/register",
@@ -106,6 +116,10 @@ export const router = createBrowserRouter([
     {
       path:'create-partner',
       element:<CreatePartner></CreatePartner>
+    },
+    {
+      path:'profile',
+      element:<Profile></Profile>
     },
   ]
 }

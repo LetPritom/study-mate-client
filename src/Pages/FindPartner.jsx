@@ -15,7 +15,7 @@ const FindPartner = () => {
   console.log(findPartners);
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/partners?limit=${limit}&skip=${currentPage*limit}`).then((res) => {
+    axios.get(`https://study-mate-server-fawn.vercel.app/partners?limit=${limit}&skip=${currentPage*limit}`).then((res) => {
       const data = res.data;
       const page = Math.ceil(data.total / limit);
       setTotalPage(page)

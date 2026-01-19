@@ -105,7 +105,7 @@ const FeaturesSection = () => {
               </div>
 
               {/* Subtle hover overlay (your original) */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#f55a00]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+              <div className="absolute inset-0 bg-linear-to-br from-[#f55a00]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
             </div>
           ))}
         </div>

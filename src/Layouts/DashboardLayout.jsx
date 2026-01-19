@@ -6,7 +6,6 @@ const DashboardLayout = () => {
     return (
         <div>
             <Sidebar></Sidebar>
-           djkfijsdkf
         </div>
     );
 };

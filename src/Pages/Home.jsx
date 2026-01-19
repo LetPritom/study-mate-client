@@ -9,6 +9,8 @@ import "aos/dist/aos.css";
 import PrivacyPolicy from "./PrivacyPolicy/PrivacyPolicy";
 import Newsletter from "./Newsletter/Newsletter";
 import FeaturesSection from "./FeaturesSection/FeaturesSection";
+import Blog from "./Blog/Blog";
+import StudentHelp from "./Support/StudentHelp/StudentHelp";
 
 const Home = () => {
   useEffect(() => {
@@ -88,6 +90,8 @@ const Home = () => {
                          px-4 py-2 rounded-md cursor-pointer font-semibold text-[#f55a00]
                         transition-all duration-200 ease-in-out shadow-sm hover:shadow-md">Find Partners</button>
         </div>
+        <Blog></Blog>
+        <StudentHelp></StudentHelp>
         <PrivacyPolicy />
         <Newsletter></Newsletter>
       </div>
